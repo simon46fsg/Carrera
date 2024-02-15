@@ -26,7 +26,10 @@ carrera_tc/main.o: ../carrera_tc/main.cpp ../Core/Inc/main.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c_ex.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h \
- ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h
+ ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h \
+ ../carrera_tc/version.h ../carrera_tc/typedef.h ../carrera_tc/defines.h \
+ ../carrera_tc/variable.h ../carrera_tc/ports.h ../carrera_tc/init.h \
+ ../carrera_tc/decoder.h ../carrera_tc/eeprom.h ../carrera_tc/delays.h
 ../Core/Inc/main.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
@@ -56,3 +59,12 @@ carrera_tc/main.o: ../carrera_tc/main.cpp ../Core/Inc/main.h \
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c_ex.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h:
+../carrera_tc/version.h:
+../carrera_tc/typedef.h:
+../carrera_tc/defines.h:
+../carrera_tc/variable.h:
+../carrera_tc/ports.h:
+../carrera_tc/init.h:
+../carrera_tc/decoder.h:
+../carrera_tc/eeprom.h:
+../carrera_tc/delays.h:

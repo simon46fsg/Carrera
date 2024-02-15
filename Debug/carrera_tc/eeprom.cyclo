@@ -1,0 +1,3 @@
+../carrera_tc/eeprom.c:40:4:EE_read	1
+../carrera_tc/eeprom.c:66:4:EE_write_verified	4
+../carrera_tc/eeprom.c:99:6:EE_write	1

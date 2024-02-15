@@ -1,0 +1,11 @@
+../carrera_tc/Init.c:42:6:Initialisierung	1
+../carrera_tc/Init.c:134:6:Init_Timer_1	1
+../carrera_tc/Init.c:155:6:Init_Timer_4	1
+../carrera_tc/Init.c:180:6:Init_Timer_6	1
+../carrera_tc/Init.c:206:6:Init_CCP1	1
+../carrera_tc/Init.c:237:6:Init_CCP2	1
+../carrera_tc/Init.c:268:6:Init_CCP3	1
+../carrera_tc/Init.c:305:6:Init_CCP4	1
+../carrera_tc/Init.c:331:6:Init_IOC_Interrupt	1
+../carrera_tc/Init.c:345:6:alle_Variablen_ruecksetzen	2
+../carrera_tc/Init.c:380:6:Init_EEPROM_Defaultwerte	3

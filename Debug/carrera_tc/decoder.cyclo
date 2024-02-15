@@ -1,0 +1,9 @@
+../carrera_tc/decoder.c:112:6:Reglerdatenwort_decodieren	8
+../carrera_tc/decoder.c:151:6:Programmierdatenwort_decodieren	13
+../carrera_tc/decoder.c:203:6:Motor_und_Bremse_ansteuern	7
+../carrera_tc/decoder.c:258:6:Count_Spurwechseltaste	12
+../carrera_tc/decoder.c:331:6:Eigene_Spurwechseltaste_auswerten	11
+../carrera_tc/decoder.c:393:6:Licht_schalten	1
+../carrera_tc/decoder.c:410:7:Licht_einschalten	1
+../carrera_tc/decoder.c:423:6:Parameter_verarbeiten	6
+../carrera_tc/decoder.c:460:6:IR_LED_einschalten	8
