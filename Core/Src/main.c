@@ -51,6 +51,8 @@ static void MPU_Initialize(void);
 static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
+void mainInit();
+void mainProcces();
 
 /* USER CODE END PFP */
 
@@ -91,6 +93,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  mainInit();
 
   /* USER CODE END 2 */
 
@@ -98,6 +101,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  mainProcces();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
