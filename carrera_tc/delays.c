@@ -26,7 +26,7 @@ void delay_100us (void)
 
     for (index = 0; index < 30; index++)
     {
-        NOP();
+        ;
     }
 
 }

@@ -7,6 +7,7 @@
 #include "main.h"
 
 //#include <xc.h> microchip specific stuff
+extern "C" {
 #include "version.h"
 #include "typedef.h"
 #include "defines.h"
@@ -16,6 +17,7 @@
 #include "decoder.h"
 #include "eeprom.h"
 #include "delays.h"
+};
 
 //microchip specific stuff
 

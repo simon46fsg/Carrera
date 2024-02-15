@@ -313,7 +313,7 @@ void Count_Spurwechseltaste(U8 Adresse)
     if ((Spurwechseltaste.Letzter_Zustand[Adresse] == GEDRUECKT) &&
         (CU_Daten.Spurwechseltaste == LOSGELASSEN))
     {
-        NOP();
+        ;
     }
 
 
@@ -378,7 +378,7 @@ void Eigene_Spurwechseltaste_auswerten(void)
     if ((Letzter_Zustand_Licht_Taste == GEDRUECKT) &&
         (CU_Daten.Spurwechseltaste == LOSGELASSEN))
     {
-        NOP();
+        ;
     }
 
     Letzter_Zustand_Licht_Taste = CU_Daten.Spurwechseltaste;

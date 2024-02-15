@@ -5,41 +5,41 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   000002cc  08000000  08000000  00010000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         000016b4  080002cc  080002cc  000102cc  2**2
+  1 .text         000021c4  080002cc  080002cc  000102cc  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000010  08001980  08001980  00011980  2**2
+  2 .rodata       00000110  08002490  08002490  00012490  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .init_array   00000004  08001990  08001990  00011990  2**2
+  3 .init_array   00000004  080025a0  080025a0  000125a0  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  4 .fini_array   00000004  08001994  08001994  00011994  2**2
+  4 .fini_array   00000004  080025a4  080025a4  000125a4  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  5 .data         00000010  24000000  08001998  00020000  2**2
+  5 .data         00000010  24000000  080025a8  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .bss          00000020  24000010  080019a8  00020010  2**2
+  6 .bss          00000070  24000010  080025b8  00020010  2**2
                   ALLOC
-  7 ._user_heap_stack 00000600  24000030  080019a8  00020030  2**0
+  7 ._user_heap_stack 00000600  24000080  080025b8  00020080  2**0
                   ALLOC
   8 .ARM.attributes 0000002e  00000000  00000000  00020010  2**0
                   CONTENTS, READONLY
   9 .comment      00000043  00000000  00000000  0002003e  2**0
                   CONTENTS, READONLY
- 10 .debug_info   000070ea  00000000  00000000  00020081  2**0
+ 10 .debug_info   00008061  00000000  00000000  00020081  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 11 .debug_abbrev 0000112b  00000000  00000000  0002716b  2**0
+ 11 .debug_abbrev 0000171e  00000000  00000000  000280e2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 12 .debug_aranges 000005f0  00000000  00000000  00028298  2**3
+ 12 .debug_aranges 00000728  00000000  00000000  00029800  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_rnglists 00000454  00000000  00000000  00028888  2**0
+ 13 .debug_rnglists 0000051f  00000000  00000000  00029f28  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_macro  00032f2f  00000000  00000000  00028cdc  2**0
+ 14 .debug_macro  00033323  00000000  00000000  0002a447  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_line   000071ac  00000000  00000000  0005bc0b  2**0
+ 15 .debug_line   00007be8  00000000  00000000  0005d76a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_str    00138eec  00000000  00000000  00062db7  2**0
+ 16 .debug_str    00139a0b  00000000  00000000  00065352  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_frame  00001638  00000000  00000000  0019bca4  2**2
+ 17 .debug_frame  000019a8  00000000  00000000  0019ed60  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line_str 00000068  00000000  00000000  0019d2dc  2**0
+ 18 .debug_line_str 00000068  00000000  00000000  001a0708  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -58,7 +58,7 @@ Disassembly of section .text:
  80002e2:	bd10      	pop	{r4, pc}
  80002e4:	24000010 	.word	0x24000010
  80002e8:	00000000 	.word	0x00000000
- 80002ec:	08001968 	.word	0x08001968
+ 80002ec:	08002478 	.word	0x08002478
 
 080002f0 <frame_dummy>:
  80002f0:	b508      	push	{r3, lr}
@@ -70,7 +70,7 @@ Disassembly of section .text:
  80002fe:	bd08      	pop	{r3, pc}
  8000300:	00000000 	.word	0x00000000
  8000304:	24000014 	.word	0x24000014
- 8000308:	08001968 	.word	0x08001968
+ 8000308:	08002478 	.word	0x08002478
 
 0800030c <main>:
 /**
@@ -108,14 +108,14 @@ int main(void)
  800031c:	f000 f864 	bl	80003e8 <MX_GPIO_Init>
   /* USER CODE BEGIN 2 */
   mainInit();
- 8000320:	f001 fae8 	bl	80018f4 <mainInit>
+ 8000320:	f001 fec2 	bl	80020a8 <mainInit>
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
 	  mainProcces();
- 8000324:	f001 faed 	bl	8001902 <mainProcces>
+ 8000324:	f001 fee0 	bl	80020e8 <mainProcces>
  8000328:	e7fc      	b.n	8000324 <main+0x18>
 	...
 
@@ -134,13 +134,13 @@ void SystemClock_Config(void)
  8000336:	224c      	movs	r2, #76	; 0x4c
  8000338:	2100      	movs	r1, #0
  800033a:	4618      	mov	r0, r3
- 800033c:	f001 fae8 	bl	8001910 <memset>
+ 800033c:	f002 f870 	bl	8002420 <memset>
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  8000340:	1d3b      	adds	r3, r7, #4
  8000342:	2220      	movs	r2, #32
  8000344:	2100      	movs	r1, #0
  8000346:	4618      	mov	r0, r3
- 8000348:	f001 fae2 	bl	8001910 <memset>
+ 8000348:	f002 f86a 	bl	8002420 <memset>
 
   /** Supply configuration update enable
   */
@@ -863,7 +863,7 @@ LoopFillZerobss:
 
 /* Call static constructors */
     bl __libc_init_array
- 8000662:	f001 f95d 	bl	8001920 <__libc_init_array>
+ 8000662:	f001 fee5 	bl	8002430 <__libc_init_array>
 /* Call the application's entry point.*/
   bl  main
  8000666:	f7ff fe51 	bl	800030c <main>
@@ -876,11 +876,11 @@ LoopFillZerobss:
   ldr r1, =_edata
  8000674:	24000010 	.word	0x24000010
   ldr r2, =_sidata
- 8000678:	08001998 	.word	0x08001998
+ 8000678:	080025a8 	.word	0x080025a8
   ldr r2, =_sbss
  800067c:	24000010 	.word	0x24000010
   ldr r4, =_ebss
- 8000680:	24000030 	.word	0x24000030
+ 8000680:	24000080 	.word	0x24000080
 
 08000684 <ADC3_IRQHandler>:
  * @retval None
@@ -978,7 +978,7 @@ HAL_StatusTypeDef HAL_Init(void)
  80006ec:	46bd      	mov	sp, r7
  80006ee:	bd80      	pop	{r7, pc}
  80006f0:	58024400 	.word	0x58024400
- 80006f4:	08001980 	.word	0x08001980
+ 80006f4:	08002490 	.word	0x08002490
  80006f8:	24000004 	.word	0x24000004
  80006fc:	24000000 	.word	0x24000000
 
@@ -3710,7 +3710,7 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  80015e8:	bd80      	pop	{r7, pc}
  80015ea:	bf00      	nop
  80015ec:	58024400 	.word	0x58024400
- 80015f0:	08001980 	.word	0x08001980
+ 80015f0:	08002490 	.word	0x08002490
  80015f4:	24000004 	.word	0x24000004
  80015f8:	24000000 	.word	0x24000000
  80015fc:	24000008 	.word	0x24000008
@@ -4051,86 +4051,2096 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
  80018ec:	4a742400 	.word	0x4a742400
  80018f0:	4bbebc20 	.word	0x4bbebc20
 
-080018f4 <mainInit>:
+080018f4 <Initialisierung>:
 
+/**
+ * initialisiert die Peripherie des PICs
+ */
+void Initialisierung(void)
+{
+ 80018f4:	b580      	push	{r7, lr}
+ 80018f6:	af00      	add	r7, sp, #0
+//    TRISC  = 0x28;	      // --io iooo      nach Reset erstmal die Pins PWM Motor und Bremse als Eingang schalten
+//    WPUC   = 0x00;       // --.. ....
+//    ANSELC = 0x00;       // --dd dddd
+
+
+    alle_Variablen_ruecksetzen();
+ 80018f8:	f000 f80e 	bl	8001918 <alle_Variablen_ruecksetzen>
+//
+//    WDTCONbits.WDTPS = 0b01000;    // 1:8192 (Interval 256 ms typ)
+//
+//    INTCONbits.PEIE = 1;           // peripheral int enable
+//    INTCONbits.GIE = 1;            // Global interrupt enable
+}
+ 80018fc:	bf00      	nop
+ 80018fe:	bd80      	pop	{r7, pc}
+
+08001900 <Init_CCP3>:
+ *     ==> 125ns Takt
+ *     Prescaler 16:1 ==> 2�s Takt
+ 
+ */
+void Init_CCP3(U8 Periodendauer)
+{
+ 8001900:	b480      	push	{r7}
+ 8001902:	b083      	sub	sp, #12
+ 8001904:	af00      	add	r7, sp, #0
+ 8001906:	4603      	mov	r3, r0
+ 8001908:	71fb      	strb	r3, [r7, #7]
+//    PIR1bits.TMR2IF = 0;            // Clear the TMRxIF interrupt flag bit Timer 2
+//    T2CONbits.T2CKPS = 0b10;        // Prescaler = 16:1
+//    T2CONbits.TMR2ON = 1;           // Timer 2 einschalten
+//
+//    TRISAbits.TRISA2 = 0;           // Enable CCP3 Pin
+}
+ 800190a:	bf00      	nop
+ 800190c:	370c      	adds	r7, #12
+ 800190e:	46bd      	mov	sp, r7
+ 8001910:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8001914:	4770      	bx	lr
+	...
+
+08001918 <alle_Variablen_ruecksetzen>:
+             
+/**
+ * setzt alle gloabale Variable zur�ck
+ */
+void alle_Variablen_ruecksetzen(void)
+{
+ 8001918:	b480      	push	{r7}
+ 800191a:	b083      	sub	sp, #12
+ 800191c:	af00      	add	r7, sp, #0
+    U8      Index;
+
+
+    Telegramm_empfangen = NEIN;
+ 800191e:	4b1b      	ldr	r3, [pc, #108]	; (800198c <alle_Variablen_ruecksetzen+0x74>)
+ 8001920:	2200      	movs	r2, #0
+ 8001922:	701a      	strb	r2, [r3, #0]
+    Licht_Sperr_Timer = 0;
+ 8001924:	4b1a      	ldr	r3, [pc, #104]	; (8001990 <alle_Variablen_ruecksetzen+0x78>)
+ 8001926:	2200      	movs	r2, #0
+ 8001928:	701a      	strb	r2, [r3, #0]
+    Ghostcar_Doppelklick_timeout = 0;
+ 800192a:	4b1a      	ldr	r3, [pc, #104]	; (8001994 <alle_Variablen_ruecksetzen+0x7c>)
+ 800192c:	2200      	movs	r2, #0
+ 800192e:	701a      	strb	r2, [r3, #0]
+    Ghostcar_Doppelklick_Counter = 0;
+ 8001930:	4b19      	ldr	r3, [pc, #100]	; (8001998 <alle_Variablen_ruecksetzen+0x80>)
+ 8001932:	2200      	movs	r2, #0
+ 8001934:	701a      	strb	r2, [r3, #0]
+    Bremslicht_timer = 0;
+ 8001936:	4b19      	ldr	r3, [pc, #100]	; (800199c <alle_Variablen_ruecksetzen+0x84>)
+ 8001938:	2200      	movs	r2, #0
+ 800193a:	701a      	strb	r2, [r3, #0]
+    Tank_leer_Blinken = NEIN;
+ 800193c:	4b18      	ldr	r3, [pc, #96]	; (80019a0 <alle_Variablen_ruecksetzen+0x88>)
+ 800193e:	2200      	movs	r2, #0
+ 8001940:	701a      	strb	r2, [r3, #0]
+    Tank_leer = NEIN;
+ 8001942:	4b18      	ldr	r3, [pc, #96]	; (80019a4 <alle_Variablen_ruecksetzen+0x8c>)
+ 8001944:	2200      	movs	r2, #0
+ 8001946:	701a      	strb	r2, [r3, #0]
+
+    CU_Prg_Daten.Parameter_alt = PRG_NORMALBETRIEB;
+ 8001948:	4b17      	ldr	r3, [pc, #92]	; (80019a8 <alle_Variablen_ruecksetzen+0x90>)
+ 800194a:	2204      	movs	r2, #4
+ 800194c:	711a      	strb	r2, [r3, #4]
+    CU_Prg_Daten.Wert_alt = 0;
+ 800194e:	4b16      	ldr	r3, [pc, #88]	; (80019a8 <alle_Variablen_ruecksetzen+0x90>)
+ 8001950:	2200      	movs	r2, #0
+ 8001952:	70da      	strb	r2, [r3, #3]
+
+    Adr_warte_auf_Reset_timeout = 0;
+ 8001954:	4b15      	ldr	r3, [pc, #84]	; (80019ac <alle_Variablen_ruecksetzen+0x94>)
+ 8001956:	2200      	movs	r2, #0
+ 8001958:	701a      	strb	r2, [r3, #0]
+
+    for (Index = 0; Index < MAX_REGLER; Index++)
+ 800195a:	2300      	movs	r3, #0
+ 800195c:	71fb      	strb	r3, [r7, #7]
+ 800195e:	e00b      	b.n	8001978 <alle_Variablen_ruecksetzen+0x60>
+    {
+        Spurwechseltaste.Counter[Index] = 0;
+ 8001960:	79fb      	ldrb	r3, [r7, #7]
+ 8001962:	4a13      	ldr	r2, [pc, #76]	; (80019b0 <alle_Variablen_ruecksetzen+0x98>)
+ 8001964:	2100      	movs	r1, #0
+ 8001966:	54d1      	strb	r1, [r2, r3]
+        Spurwechseltaste.Letzter_Zustand[Index] = LOSGELASSEN;
+ 8001968:	79fb      	ldrb	r3, [r7, #7]
+ 800196a:	4a11      	ldr	r2, [pc, #68]	; (80019b0 <alle_Variablen_ruecksetzen+0x98>)
+ 800196c:	4413      	add	r3, r2
+ 800196e:	2201      	movs	r2, #1
+ 8001970:	719a      	strb	r2, [r3, #6]
+    for (Index = 0; Index < MAX_REGLER; Index++)
+ 8001972:	79fb      	ldrb	r3, [r7, #7]
+ 8001974:	3301      	adds	r3, #1
+ 8001976:	71fb      	strb	r3, [r7, #7]
+ 8001978:	79fb      	ldrb	r3, [r7, #7]
+ 800197a:	2b05      	cmp	r3, #5
+ 800197c:	d9f0      	bls.n	8001960 <alle_Variablen_ruecksetzen+0x48>
+    }
+}
+ 800197e:	bf00      	nop
+ 8001980:	bf00      	nop
+ 8001982:	370c      	adds	r7, #12
+ 8001984:	46bd      	mov	sp, r7
+ 8001986:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800198a:	4770      	bx	lr
+ 800198c:	2400005c 	.word	0x2400005c
+ 8001990:	2400005f 	.word	0x2400005f
+ 8001994:	24000062 	.word	0x24000062
+ 8001998:	24000063 	.word	0x24000063
+ 800199c:	24000065 	.word	0x24000065
+ 80019a0:	2400007c 	.word	0x2400007c
+ 80019a4:	24000064 	.word	0x24000064
+ 80019a8:	2400003c 	.word	0x2400003c
+ 80019ac:	24000061 	.word	0x24000061
+ 80019b0:	24000044 	.word	0x24000044
+
+080019b4 <Init_EEPROM_Defaultwerte>:
+ * 
+ * Die Adressen EE_ADR_DEFAULT_0XAA und EE_ADR_DEFAULT_0X55 gelten als Flag ob
+ * die Werte schon geschrieben wurden.
+ */
+void Init_EEPROM_Defaultwerte(void)
+{
+ 80019b4:	b580      	push	{r7, lr}
+ 80019b6:	b082      	sub	sp, #8
+ 80019b8:	af00      	add	r7, sp, #0
+    U8 value;
+            
+    value = EE_read(EE_ADR_DEFAULT_0XAA);
+ 80019ba:	2010      	movs	r0, #16
+ 80019bc:	f000 fb2d 	bl	800201a <EE_read>
+ 80019c0:	4603      	mov	r3, r0
+ 80019c2:	71fb      	strb	r3, [r7, #7]
+    if (value != 0xAA)                        
+ 80019c4:	79fb      	ldrb	r3, [r7, #7]
+ 80019c6:	2baa      	cmp	r3, #170	; 0xaa
+ 80019c8:	d02b      	beq.n	8001a22 <Init_EEPROM_Defaultwerte+0x6e>
+    //if (EE_read(EE_ADR_DEFAULT_0XAA) != 0xAA)
+    {
+        value = EE_read(EE_ADR_DEFAULT_0X55);
+ 80019ca:	2011      	movs	r0, #17
+ 80019cc:	f000 fb25 	bl	800201a <EE_read>
+ 80019d0:	4603      	mov	r3, r0
+ 80019d2:	71fb      	strb	r3, [r7, #7]
+        if (value != 0x55)                                
+ 80019d4:	79fb      	ldrb	r3, [r7, #7]
+ 80019d6:	2b55      	cmp	r3, #85	; 0x55
+ 80019d8:	d023      	beq.n	8001a22 <Init_EEPROM_Defaultwerte+0x6e>
+        //if (EE_read(EE_ADR_DEFAULT_0X55) != 0x55)
+        {        
+            EE_write_verified(0, EE_ADR_AUTO_ADRESSE);              // Auto 1 = Adresse 0            
+ 80019da:	2101      	movs	r1, #1
+ 80019dc:	2000      	movs	r0, #0
+ 80019de:	f000 fb28 	bl	8002032 <EE_write_verified>
+            EE_write_verified(1, EE_ADR_LICHT);                     // Licht an
+ 80019e2:	2102      	movs	r1, #2
+ 80019e4:	2001      	movs	r0, #1
+ 80019e6:	f000 fb24 	bl	8002032 <EE_write_verified>
+            EE_write_verified(0, EE_ADR_PROGRAMMIERMODUS);          // aus
+ 80019ea:	2103      	movs	r1, #3
+ 80019ec:	2000      	movs	r0, #0
+ 80019ee:	f000 fb20 	bl	8002032 <EE_write_verified>
+            EE_write_verified(6, EE_ADR_BREMSWIRKUNG);              // minimale Bremswirkung
+ 80019f2:	2104      	movs	r1, #4
+ 80019f4:	2006      	movs	r0, #6
+ 80019f6:	f000 fb1c 	bl	8002032 <EE_write_verified>
+            EE_write_verified(1, EE_ADR_MAX_GESCHWINDIGKEIT);       // langsame Endgeschwindigkeit
+ 80019fa:	2105      	movs	r1, #5
+ 80019fc:	2001      	movs	r0, #1
+ 80019fe:	f000 fb18 	bl	8002032 <EE_write_verified>
+            EE_write_verified(0, EE_ADR_GHOST_GESCHWINDIGKEIT);
+ 8001a02:	2107      	movs	r1, #7
+ 8001a04:	2000      	movs	r0, #0
+ 8001a06:	f000 fb14 	bl	8002032 <EE_write_verified>
+            EE_write_verified(0, EE_ADR_GHOST_PROGRAMMIERMODUS);
+ 8001a0a:	2108      	movs	r1, #8
+ 8001a0c:	2000      	movs	r0, #0
+ 8001a0e:	f000 fb10 	bl	8002032 <EE_write_verified>
+
+            EE_write_verified(0xAA, EE_ADR_DEFAULT_0XAA);           // Flag, dass Default-Werte drin sind
+ 8001a12:	2110      	movs	r1, #16
+ 8001a14:	20aa      	movs	r0, #170	; 0xaa
+ 8001a16:	f000 fb0c 	bl	8002032 <EE_write_verified>
+            EE_write_verified(0x55, EE_ADR_DEFAULT_0X55);
+ 8001a1a:	2111      	movs	r1, #17
+ 8001a1c:	2055      	movs	r0, #85	; 0x55
+ 8001a1e:	f000 fb08 	bl	8002032 <EE_write_verified>
+        }
+    }
+}
+ 8001a22:	bf00      	nop
+ 8001a24:	3708      	adds	r7, #8
+ 8001a26:	46bd      	mov	sp, r7
+ 8001a28:	bd80      	pop	{r7, pc}
+	...
+
+08001a2c <Reglerdatenwort_decodieren>:
+/**
+ * wertet ein empfangenes Regler oder Ghostcar Datenwort aus
+ * Datenwort steht in DataBit[]
+ */
+void Reglerdatenwort_decodieren(void)
+{
+ 8001a2c:	b480      	push	{r7}
+ 8001a2e:	b083      	sub	sp, #12
+ 8001a30:	af00      	add	r7, sp, #0
+    U8      Auto_Adresse,
+            Reglerwert;
+
+
+    Auto_Adresse = 0;
+ 8001a32:	2300      	movs	r3, #0
+ 8001a34:	71fb      	strb	r3, [r7, #7]
+    if (DataBit[1] == 1)
+ 8001a36:	4b27      	ldr	r3, [pc, #156]	; (8001ad4 <Reglerdatenwort_decodieren+0xa8>)
+ 8001a38:	785b      	ldrb	r3, [r3, #1]
+ 8001a3a:	2b01      	cmp	r3, #1
+ 8001a3c:	d103      	bne.n	8001a46 <Reglerdatenwort_decodieren+0x1a>
+        Auto_Adresse |= 0x04;
+ 8001a3e:	79fb      	ldrb	r3, [r7, #7]
+ 8001a40:	f043 0304 	orr.w	r3, r3, #4
+ 8001a44:	71fb      	strb	r3, [r7, #7]
+    if (DataBit[2] == 1)
+ 8001a46:	4b23      	ldr	r3, [pc, #140]	; (8001ad4 <Reglerdatenwort_decodieren+0xa8>)
+ 8001a48:	789b      	ldrb	r3, [r3, #2]
+ 8001a4a:	2b01      	cmp	r3, #1
+ 8001a4c:	d103      	bne.n	8001a56 <Reglerdatenwort_decodieren+0x2a>
+        Auto_Adresse |= 0x02;
+ 8001a4e:	79fb      	ldrb	r3, [r7, #7]
+ 8001a50:	f043 0302 	orr.w	r3, r3, #2
+ 8001a54:	71fb      	strb	r3, [r7, #7]
+    if (DataBit[3] == 1)
+ 8001a56:	4b1f      	ldr	r3, [pc, #124]	; (8001ad4 <Reglerdatenwort_decodieren+0xa8>)
+ 8001a58:	78db      	ldrb	r3, [r3, #3]
+ 8001a5a:	2b01      	cmp	r3, #1
+ 8001a5c:	d103      	bne.n	8001a66 <Reglerdatenwort_decodieren+0x3a>
+        Auto_Adresse |= 0x01;
+ 8001a5e:	79fb      	ldrb	r3, [r7, #7]
+ 8001a60:	f043 0301 	orr.w	r3, r3, #1
+ 8001a64:	71fb      	strb	r3, [r7, #7]
+    CU_Daten.Adresse = Auto_Adresse;
+ 8001a66:	4a1c      	ldr	r2, [pc, #112]	; (8001ad8 <Reglerdatenwort_decodieren+0xac>)
+ 8001a68:	79fb      	ldrb	r3, [r7, #7]
+ 8001a6a:	7013      	strb	r3, [r2, #0]
+    
+    CU_Daten.Spurwechseltaste = DataBit[4];
+ 8001a6c:	4b19      	ldr	r3, [pc, #100]	; (8001ad4 <Reglerdatenwort_decodieren+0xa8>)
+ 8001a6e:	791a      	ldrb	r2, [r3, #4]
+ 8001a70:	4b19      	ldr	r3, [pc, #100]	; (8001ad8 <Reglerdatenwort_decodieren+0xac>)
+ 8001a72:	705a      	strb	r2, [r3, #1]
+
+    Reglerwert = 0;                 // wird sp�ter in PWM geschrieben
+ 8001a74:	2300      	movs	r3, #0
+ 8001a76:	71bb      	strb	r3, [r7, #6]
+    if (DataBit[5] == 1)
+ 8001a78:	4b16      	ldr	r3, [pc, #88]	; (8001ad4 <Reglerdatenwort_decodieren+0xa8>)
+ 8001a7a:	795b      	ldrb	r3, [r3, #5]
+ 8001a7c:	2b01      	cmp	r3, #1
+ 8001a7e:	d103      	bne.n	8001a88 <Reglerdatenwort_decodieren+0x5c>
+        Reglerwert |= 0x08;
+ 8001a80:	79bb      	ldrb	r3, [r7, #6]
+ 8001a82:	f043 0308 	orr.w	r3, r3, #8
+ 8001a86:	71bb      	strb	r3, [r7, #6]
+    if (DataBit[6] == 1)
+ 8001a88:	4b12      	ldr	r3, [pc, #72]	; (8001ad4 <Reglerdatenwort_decodieren+0xa8>)
+ 8001a8a:	799b      	ldrb	r3, [r3, #6]
+ 8001a8c:	2b01      	cmp	r3, #1
+ 8001a8e:	d103      	bne.n	8001a98 <Reglerdatenwort_decodieren+0x6c>
+        Reglerwert |= 0x04;
+ 8001a90:	79bb      	ldrb	r3, [r7, #6]
+ 8001a92:	f043 0304 	orr.w	r3, r3, #4
+ 8001a96:	71bb      	strb	r3, [r7, #6]
+    if (DataBit[7] == 1)
+ 8001a98:	4b0e      	ldr	r3, [pc, #56]	; (8001ad4 <Reglerdatenwort_decodieren+0xa8>)
+ 8001a9a:	79db      	ldrb	r3, [r3, #7]
+ 8001a9c:	2b01      	cmp	r3, #1
+ 8001a9e:	d103      	bne.n	8001aa8 <Reglerdatenwort_decodieren+0x7c>
+        Reglerwert |= 0x02;
+ 8001aa0:	79bb      	ldrb	r3, [r7, #6]
+ 8001aa2:	f043 0302 	orr.w	r3, r3, #2
+ 8001aa6:	71bb      	strb	r3, [r7, #6]
+    if (DataBit[8] == 1)
+ 8001aa8:	4b0a      	ldr	r3, [pc, #40]	; (8001ad4 <Reglerdatenwort_decodieren+0xa8>)
+ 8001aaa:	7a1b      	ldrb	r3, [r3, #8]
+ 8001aac:	2b01      	cmp	r3, #1
+ 8001aae:	d103      	bne.n	8001ab8 <Reglerdatenwort_decodieren+0x8c>
+        Reglerwert |= 0x01;
+ 8001ab0:	79bb      	ldrb	r3, [r7, #6]
+ 8001ab2:	f043 0301 	orr.w	r3, r3, #1
+ 8001ab6:	71bb      	strb	r3, [r7, #6]
+    CU_Daten.Reglerwert = Reglerwert;
+ 8001ab8:	4a07      	ldr	r2, [pc, #28]	; (8001ad8 <Reglerdatenwort_decodieren+0xac>)
+ 8001aba:	79bb      	ldrb	r3, [r7, #6]
+ 8001abc:	7093      	strb	r3, [r2, #2]
+
+    CU_Daten.Tankanzeige = DataBit[9];
+ 8001abe:	4b05      	ldr	r3, [pc, #20]	; (8001ad4 <Reglerdatenwort_decodieren+0xa8>)
+ 8001ac0:	7a5a      	ldrb	r2, [r3, #9]
+ 8001ac2:	4b05      	ldr	r3, [pc, #20]	; (8001ad8 <Reglerdatenwort_decodieren+0xac>)
+ 8001ac4:	70da      	strb	r2, [r3, #3]
+
+
+}
+ 8001ac6:	bf00      	nop
+ 8001ac8:	370c      	adds	r7, #12
+ 8001aca:	46bd      	mov	sp, r7
+ 8001acc:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8001ad0:	4770      	bx	lr
+ 8001ad2:	bf00      	nop
+ 8001ad4:	24000068 	.word	0x24000068
+ 8001ad8:	24000034 	.word	0x24000034
+
+08001adc <Programmierdatenwort_decodieren>:
+ * wertes ein empfangenes Programmierdatenwort aus
+ * Datenwort steht in DataBit[]
+ * Ergebnis steht in der globalen Struktur CU_Prg_Daten
+ */
+void Programmierdatenwort_decodieren(void)
+{
+ 8001adc:	b480      	push	{r7}
+ 8001ade:	b083      	sub	sp, #12
+ 8001ae0:	af00      	add	r7, sp, #0
+    U8      Adresse,
+            Parameter,
+            Wert;
+
+
+    Wert = 0;
+ 8001ae2:	2300      	movs	r3, #0
+ 8001ae4:	717b      	strb	r3, [r7, #5]
+    if (DataBit[1] == 1)
+ 8001ae6:	4b39      	ldr	r3, [pc, #228]	; (8001bcc <Programmierdatenwort_decodieren+0xf0>)
+ 8001ae8:	785b      	ldrb	r3, [r3, #1]
+ 8001aea:	2b01      	cmp	r3, #1
+ 8001aec:	d103      	bne.n	8001af6 <Programmierdatenwort_decodieren+0x1a>
+        Wert |= 0x01;
+ 8001aee:	797b      	ldrb	r3, [r7, #5]
+ 8001af0:	f043 0301 	orr.w	r3, r3, #1
+ 8001af4:	717b      	strb	r3, [r7, #5]
+    if (DataBit[2] == 1)
+ 8001af6:	4b35      	ldr	r3, [pc, #212]	; (8001bcc <Programmierdatenwort_decodieren+0xf0>)
+ 8001af8:	789b      	ldrb	r3, [r3, #2]
+ 8001afa:	2b01      	cmp	r3, #1
+ 8001afc:	d103      	bne.n	8001b06 <Programmierdatenwort_decodieren+0x2a>
+        Wert |= 0x02;
+ 8001afe:	797b      	ldrb	r3, [r7, #5]
+ 8001b00:	f043 0302 	orr.w	r3, r3, #2
+ 8001b04:	717b      	strb	r3, [r7, #5]
+    if (DataBit[3] == 1)
+ 8001b06:	4b31      	ldr	r3, [pc, #196]	; (8001bcc <Programmierdatenwort_decodieren+0xf0>)
+ 8001b08:	78db      	ldrb	r3, [r3, #3]
+ 8001b0a:	2b01      	cmp	r3, #1
+ 8001b0c:	d103      	bne.n	8001b16 <Programmierdatenwort_decodieren+0x3a>
+        Wert |= 0x04;
+ 8001b0e:	797b      	ldrb	r3, [r7, #5]
+ 8001b10:	f043 0304 	orr.w	r3, r3, #4
+ 8001b14:	717b      	strb	r3, [r7, #5]
+    if (DataBit[4] == 1)
+ 8001b16:	4b2d      	ldr	r3, [pc, #180]	; (8001bcc <Programmierdatenwort_decodieren+0xf0>)
+ 8001b18:	791b      	ldrb	r3, [r3, #4]
+ 8001b1a:	2b01      	cmp	r3, #1
+ 8001b1c:	d103      	bne.n	8001b26 <Programmierdatenwort_decodieren+0x4a>
+        Wert |= 0x08;
+ 8001b1e:	797b      	ldrb	r3, [r7, #5]
+ 8001b20:	f043 0308 	orr.w	r3, r3, #8
+ 8001b24:	717b      	strb	r3, [r7, #5]
+    CU_Prg_Daten.Wert = Wert;
+ 8001b26:	4a2a      	ldr	r2, [pc, #168]	; (8001bd0 <Programmierdatenwort_decodieren+0xf4>)
+ 8001b28:	797b      	ldrb	r3, [r7, #5]
+ 8001b2a:	7053      	strb	r3, [r2, #1]
+
+    Parameter = 0;
+ 8001b2c:	2300      	movs	r3, #0
+ 8001b2e:	71bb      	strb	r3, [r7, #6]
+    if (DataBit[5] == 1)
+ 8001b30:	4b26      	ldr	r3, [pc, #152]	; (8001bcc <Programmierdatenwort_decodieren+0xf0>)
+ 8001b32:	795b      	ldrb	r3, [r3, #5]
+ 8001b34:	2b01      	cmp	r3, #1
+ 8001b36:	d103      	bne.n	8001b40 <Programmierdatenwort_decodieren+0x64>
+        Parameter |= 0x01;
+ 8001b38:	79bb      	ldrb	r3, [r7, #6]
+ 8001b3a:	f043 0301 	orr.w	r3, r3, #1
+ 8001b3e:	71bb      	strb	r3, [r7, #6]
+    if (DataBit[6] == 1)
+ 8001b40:	4b22      	ldr	r3, [pc, #136]	; (8001bcc <Programmierdatenwort_decodieren+0xf0>)
+ 8001b42:	799b      	ldrb	r3, [r3, #6]
+ 8001b44:	2b01      	cmp	r3, #1
+ 8001b46:	d103      	bne.n	8001b50 <Programmierdatenwort_decodieren+0x74>
+        Parameter |= 0x02;
+ 8001b48:	79bb      	ldrb	r3, [r7, #6]
+ 8001b4a:	f043 0302 	orr.w	r3, r3, #2
+ 8001b4e:	71bb      	strb	r3, [r7, #6]
+    if (DataBit[7] == 1)
+ 8001b50:	4b1e      	ldr	r3, [pc, #120]	; (8001bcc <Programmierdatenwort_decodieren+0xf0>)
+ 8001b52:	79db      	ldrb	r3, [r3, #7]
+ 8001b54:	2b01      	cmp	r3, #1
+ 8001b56:	d103      	bne.n	8001b60 <Programmierdatenwort_decodieren+0x84>
+        Parameter |= 0x04;
+ 8001b58:	79bb      	ldrb	r3, [r7, #6]
+ 8001b5a:	f043 0304 	orr.w	r3, r3, #4
+ 8001b5e:	71bb      	strb	r3, [r7, #6]
+    if (DataBit[8] == 1)
+ 8001b60:	4b1a      	ldr	r3, [pc, #104]	; (8001bcc <Programmierdatenwort_decodieren+0xf0>)
+ 8001b62:	7a1b      	ldrb	r3, [r3, #8]
+ 8001b64:	2b01      	cmp	r3, #1
+ 8001b66:	d103      	bne.n	8001b70 <Programmierdatenwort_decodieren+0x94>
+        Parameter |= 0x08;
+ 8001b68:	79bb      	ldrb	r3, [r7, #6]
+ 8001b6a:	f043 0308 	orr.w	r3, r3, #8
+ 8001b6e:	71bb      	strb	r3, [r7, #6]
+    if (DataBit[9] == 1)
+ 8001b70:	4b16      	ldr	r3, [pc, #88]	; (8001bcc <Programmierdatenwort_decodieren+0xf0>)
+ 8001b72:	7a5b      	ldrb	r3, [r3, #9]
+ 8001b74:	2b01      	cmp	r3, #1
+ 8001b76:	d103      	bne.n	8001b80 <Programmierdatenwort_decodieren+0xa4>
+        Parameter |= 0x10;
+ 8001b78:	79bb      	ldrb	r3, [r7, #6]
+ 8001b7a:	f043 0310 	orr.w	r3, r3, #16
+ 8001b7e:	71bb      	strb	r3, [r7, #6]
+    CU_Prg_Daten.Parameter = Parameter;
+ 8001b80:	4a13      	ldr	r2, [pc, #76]	; (8001bd0 <Programmierdatenwort_decodieren+0xf4>)
+ 8001b82:	79bb      	ldrb	r3, [r7, #6]
+ 8001b84:	7093      	strb	r3, [r2, #2]
+
+    Adresse = 0;
+ 8001b86:	2300      	movs	r3, #0
+ 8001b88:	71fb      	strb	r3, [r7, #7]
+    if (DataBit[10] == 1)
+ 8001b8a:	4b10      	ldr	r3, [pc, #64]	; (8001bcc <Programmierdatenwort_decodieren+0xf0>)
+ 8001b8c:	7a9b      	ldrb	r3, [r3, #10]
+ 8001b8e:	2b01      	cmp	r3, #1
+ 8001b90:	d103      	bne.n	8001b9a <Programmierdatenwort_decodieren+0xbe>
+        Adresse |= 0x01;
+ 8001b92:	79fb      	ldrb	r3, [r7, #7]
+ 8001b94:	f043 0301 	orr.w	r3, r3, #1
+ 8001b98:	71fb      	strb	r3, [r7, #7]
+    if (DataBit[11] == 1)
+ 8001b9a:	4b0c      	ldr	r3, [pc, #48]	; (8001bcc <Programmierdatenwort_decodieren+0xf0>)
+ 8001b9c:	7adb      	ldrb	r3, [r3, #11]
+ 8001b9e:	2b01      	cmp	r3, #1
+ 8001ba0:	d103      	bne.n	8001baa <Programmierdatenwort_decodieren+0xce>
+        Adresse |= 0x02;
+ 8001ba2:	79fb      	ldrb	r3, [r7, #7]
+ 8001ba4:	f043 0302 	orr.w	r3, r3, #2
+ 8001ba8:	71fb      	strb	r3, [r7, #7]
+    if (DataBit[12] == 1)
+ 8001baa:	4b08      	ldr	r3, [pc, #32]	; (8001bcc <Programmierdatenwort_decodieren+0xf0>)
+ 8001bac:	7b1b      	ldrb	r3, [r3, #12]
+ 8001bae:	2b01      	cmp	r3, #1
+ 8001bb0:	d103      	bne.n	8001bba <Programmierdatenwort_decodieren+0xde>
+        Adresse |= 0x04;
+ 8001bb2:	79fb      	ldrb	r3, [r7, #7]
+ 8001bb4:	f043 0304 	orr.w	r3, r3, #4
+ 8001bb8:	71fb      	strb	r3, [r7, #7]
+    CU_Prg_Daten.Adresse = Adresse;
+ 8001bba:	4a05      	ldr	r2, [pc, #20]	; (8001bd0 <Programmierdatenwort_decodieren+0xf4>)
+ 8001bbc:	79fb      	ldrb	r3, [r7, #7]
+ 8001bbe:	7013      	strb	r3, [r2, #0]
+}
+ 8001bc0:	bf00      	nop
+ 8001bc2:	370c      	adds	r7, #12
+ 8001bc4:	46bd      	mov	sp, r7
+ 8001bc6:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8001bca:	4770      	bx	lr
+ 8001bcc:	24000068 	.word	0x24000068
+ 8001bd0:	2400003c 	.word	0x2400003c
+
+08001bd4 <Motor_und_Bremse_ansteuern>:
+ * je nach CU Datenwort Reglerwert in's PWM 2 Register f�r Bremse schreiben
+ * Wenn Motor an, dann Licht_Sperr_Timer setzen
+ * 
+ */
+void Motor_und_Bremse_ansteuern(U8 Wert)
+{
+ 8001bd4:	b580      	push	{r7, lr}
+ 8001bd6:	b084      	sub	sp, #16
+ 8001bd8:	af00      	add	r7, sp, #0
+ 8001bda:	4603      	mov	r3, r0
+ 8001bdc:	71fb      	strb	r3, [r7, #7]
+            v_max,
+            Motor_PWM_Wert;
+    
+    
+                                                                                // Fehelerhaften Werten vorbeugen 
+    v_max =        (U8)(EE_read(EE_ADR_MAX_GESCHWINDIGKEIT) & 0x0F);            // zur Sicherheit die Werte jedesmal neu auslesen
+ 8001bde:	2005      	movs	r0, #5
+ 8001be0:	f000 fa1b 	bl	800201a <EE_read>
+ 8001be4:	4603      	mov	r3, r0
+ 8001be6:	f003 030f 	and.w	r3, r3, #15
+ 8001bea:	73fb      	strb	r3, [r7, #15]
+    Bremswirkung = (U8)(EE_read(EE_ADR_BREMSWIRKUNG) & 0x0F);
+ 8001bec:	2004      	movs	r0, #4
+ 8001bee:	f000 fa14 	bl	800201a <EE_read>
+ 8001bf2:	4603      	mov	r3, r0
+ 8001bf4:	f003 030f 	and.w	r3, r3, #15
+ 8001bf8:	73bb      	strb	r3, [r7, #14]
+    Wert         = (U8)(Wert & 0x0F);
+ 8001bfa:	79fb      	ldrb	r3, [r7, #7]
+ 8001bfc:	f003 030f 	and.w	r3, r3, #15
+ 8001c00:	71fb      	strb	r3, [r7, #7]
+    
+    Motor_PWM_Wert = Fahrtabelle[v_max][Wert];
+ 8001c02:	7bfa      	ldrb	r2, [r7, #15]
+ 8001c04:	79fb      	ldrb	r3, [r7, #7]
+ 8001c06:	4918      	ldr	r1, [pc, #96]	; (8001c68 <Motor_und_Bremse_ansteuern+0x94>)
+ 8001c08:	0112      	lsls	r2, r2, #4
+ 8001c0a:	440a      	add	r2, r1
+ 8001c0c:	4413      	add	r3, r2
+ 8001c0e:	781b      	ldrb	r3, [r3, #0]
+ 8001c10:	737b      	strb	r3, [r7, #13]
+    
+    if ((Motor_PWM_Wert == 0) && (Letzter_Zustand_Bremse == LOSGELASSEN))       // Motor aus, Bremse ist noch aus
+ 8001c12:	7b7b      	ldrb	r3, [r7, #13]
+ 8001c14:	2b00      	cmp	r3, #0
+ 8001c16:	d10b      	bne.n	8001c30 <Motor_und_Bremse_ansteuern+0x5c>
+ 8001c18:	4b14      	ldr	r3, [pc, #80]	; (8001c6c <Motor_und_Bremse_ansteuern+0x98>)
+ 8001c1a:	781b      	ldrb	r3, [r3, #0]
+ 8001c1c:	2b01      	cmp	r3, #1
+ 8001c1e:	d107      	bne.n	8001c30 <Motor_und_Bremse_ansteuern+0x5c>
+    {
+        Bremslicht_timer = BREMSLICHT_DAUER;                                    // dann f�r ein paar Sekunden das Bremslicht einschalten
+ 8001c20:	4b13      	ldr	r3, [pc, #76]	; (8001c70 <Motor_und_Bremse_ansteuern+0x9c>)
+ 8001c22:	2205      	movs	r2, #5
+ 8001c24:	701a      	strb	r2, [r3, #0]
+       // CCPR1L = 0;      todo: gpio write pin                                                      // Motor ausschalten
+        delay_100us();                                                          // zur Sicherheit kurz warten
+ 8001c26:	f000 f9e5 	bl	8001ff4 <delay_100us>
+        //CCPR2L = Bremstabelle[Bremswirkung]; todo: gpio write pin
+            
+        Letzter_Zustand_Bremse = GEDRUECKT;
+ 8001c2a:	4b10      	ldr	r3, [pc, #64]	; (8001c6c <Motor_und_Bremse_ansteuern+0x98>)
+ 8001c2c:	2200      	movs	r2, #0
+ 8001c2e:	701a      	strb	r2, [r3, #0]
+    }
+
+    if ((Motor_PWM_Wert != 0) && (Letzter_Zustand_Bremse == GEDRUECKT))         // Motor an, Bremse ist noch gedr�ckt
+ 8001c30:	7b7b      	ldrb	r3, [r7, #13]
+ 8001c32:	2b00      	cmp	r3, #0
+ 8001c34:	d008      	beq.n	8001c48 <Motor_und_Bremse_ansteuern+0x74>
+ 8001c36:	4b0d      	ldr	r3, [pc, #52]	; (8001c6c <Motor_und_Bremse_ansteuern+0x98>)
+ 8001c38:	781b      	ldrb	r3, [r3, #0]
+ 8001c3a:	2b00      	cmp	r3, #0
+ 8001c3c:	d104      	bne.n	8001c48 <Motor_und_Bremse_ansteuern+0x74>
+    {
+        //CCPR2L = 0;             todo: gpio write pin                                                // Bremse l�sen
+        delay_100us();                                                          // zur Sicherheit kurz warten
+ 8001c3e:	f000 f9d9 	bl	8001ff4 <delay_100us>
+        //CCPR1L = Motor_PWM_Wert; todo: gpio write pin
+
+        Letzter_Zustand_Bremse = LOSGELASSEN;
+ 8001c42:	4b0a      	ldr	r3, [pc, #40]	; (8001c6c <Motor_und_Bremse_ansteuern+0x98>)
+ 8001c44:	2201      	movs	r2, #1
+ 8001c46:	701a      	strb	r2, [r3, #0]
+    }
+
+    if ((Motor_PWM_Wert != 0) && (Letzter_Zustand_Bremse == LOSGELASSEN))       // Motor an, Bremse ist schon gel�st
+ 8001c48:	7b7b      	ldrb	r3, [r7, #13]
+ 8001c4a:	2b00      	cmp	r3, #0
+ 8001c4c:	d006      	beq.n	8001c5c <Motor_und_Bremse_ansteuern+0x88>
+ 8001c4e:	4b07      	ldr	r3, [pc, #28]	; (8001c6c <Motor_und_Bremse_ansteuern+0x98>)
+ 8001c50:	781b      	ldrb	r3, [r3, #0]
+ 8001c52:	2b01      	cmp	r3, #1
+ 8001c54:	d102      	bne.n	8001c5c <Motor_und_Bremse_ansteuern+0x88>
+    {
+        //CCPR2L = 0; todo gpio                                                             // Bremse aus (zur Sicherheit)
+        //CCPR1L = Motor_PWM_Wert; todo gpio                                                // Motor entsprechend Reglerstellung ansteuern
+        Licht_Sperr_Timer = LICHTSPERR_ZEIT;
+ 8001c56:	4b07      	ldr	r3, [pc, #28]	; (8001c74 <Motor_und_Bremse_ansteuern+0xa0>)
+ 8001c58:	2285      	movs	r2, #133	; 0x85
+ 8001c5a:	701a      	strb	r2, [r3, #0]
+    }
+
+    if ((Motor_PWM_Wert == 0) && (Letzter_Zustand_Bremse == GEDRUECKT))         // Motor aus, Bremse ist schon angezogen
+ 8001c5c:	7b7b      	ldrb	r3, [r7, #13]
+ 8001c5e:	2b00      	cmp	r3, #0
+    {
+        //CCPR1L = 0; todo gpio                                                            // Motor aus (zur Sicherheit)
+        //CCPR2L = Bremstabelle[Bremswirkung]; todo gpio
+    }
+        
+}
+ 8001c60:	bf00      	nop
+ 8001c62:	3710      	adds	r7, #16
+ 8001c64:	46bd      	mov	sp, r7
+ 8001c66:	bd80      	pop	{r7, pc}
+ 8001c68:	080024a0 	.word	0x080024a0
+ 8001c6c:	24000066 	.word	0x24000066
+ 8001c70:	24000065 	.word	0x24000065
+ 8001c74:	2400005f 	.word	0x2400005f
+
+08001c78 <Count_Spurwechseltaste>:
+ * f�r alle 6 Regler das Dr�cken der Spurwechseltaste z�hlen
+ * wenn 2 x gedr�ckt und Motor aus dann in den Programmiermodus
+ * wenn im Programmiermodus 2x gedr�ckt, dann die neue Adresse speichern
+ */
+void Count_Spurwechseltaste(U8 Adresse)
+{
+ 8001c78:	b580      	push	{r7, lr}
+ 8001c7a:	b084      	sub	sp, #16
+ 8001c7c:	af00      	add	r7, sp, #0
+ 8001c7e:	4603      	mov	r3, r0
+ 8001c80:	71fb      	strb	r3, [r7, #7]
+    U16  index,
+         index_2;
+
+    if (
+            (Spurwechseltaste.Letzter_Zustand[Adresse] == LOSGELASSEN) &&
+ 8001c82:	79fb      	ldrb	r3, [r7, #7]
+ 8001c84:	4a43      	ldr	r2, [pc, #268]	; (8001d94 <Count_Spurwechseltaste+0x11c>)
+ 8001c86:	4413      	add	r3, r2
+ 8001c88:	799b      	ldrb	r3, [r3, #6]
+    if (
+ 8001c8a:	2b01      	cmp	r3, #1
+ 8001c8c:	d172      	bne.n	8001d74 <Count_Spurwechseltaste+0xfc>
+            (CU_Daten.Spurwechseltaste == GEDRUECKT)
+ 8001c8e:	4b42      	ldr	r3, [pc, #264]	; (8001d98 <Count_Spurwechseltaste+0x120>)
+ 8001c90:	785b      	ldrb	r3, [r3, #1]
+            (Spurwechseltaste.Letzter_Zustand[Adresse] == LOSGELASSEN) &&
+ 8001c92:	2b00      	cmp	r3, #0
+ 8001c94:	d16e      	bne.n	8001d74 <Count_Spurwechseltaste+0xfc>
+        )
+    {
+        if (CU_Daten.Reglerwert == 0)                                           // Nur wenn Auto wo die taste gedr�ckt wurde steht
+ 8001c96:	4b40      	ldr	r3, [pc, #256]	; (8001d98 <Count_Spurwechseltaste+0x120>)
+ 8001c98:	789b      	ldrb	r3, [r3, #2]
+ 8001c9a:	2b00      	cmp	r3, #0
+ 8001c9c:	d16a      	bne.n	8001d74 <Count_Spurwechseltaste+0xfc>
+        {
+            Spurwechseltaste.Counter[Adresse]++;
+ 8001c9e:	79fb      	ldrb	r3, [r7, #7]
+ 8001ca0:	4a3c      	ldr	r2, [pc, #240]	; (8001d94 <Count_Spurwechseltaste+0x11c>)
+ 8001ca2:	5cd2      	ldrb	r2, [r2, r3]
+ 8001ca4:	3201      	adds	r2, #1
+ 8001ca6:	b2d1      	uxtb	r1, r2
+ 8001ca8:	4a3a      	ldr	r2, [pc, #232]	; (8001d94 <Count_Spurwechseltaste+0x11c>)
+ 8001caa:	54d1      	strb	r1, [r2, r3]
+            Spurwechseltaste.Reset_Timer[Adresse] = PROGRAMMIER_TIMEOUT;        // 2 Sekunden, wenn dann keine Taste gedr�ckt, dann counter l�schen
+ 8001cac:	79fb      	ldrb	r3, [r7, #7]
+ 8001cae:	4a39      	ldr	r2, [pc, #228]	; (8001d94 <Count_Spurwechseltaste+0x11c>)
+ 8001cb0:	4413      	add	r3, r2
+ 8001cb2:	2214      	movs	r2, #20
+ 8001cb4:	731a      	strb	r2, [r3, #12]
+
+            Programmiermodus = EE_read(EE_ADR_PROGRAMMIERMODUS);            
+ 8001cb6:	2003      	movs	r0, #3
+ 8001cb8:	f000 f9af 	bl	800201a <EE_read>
+ 8001cbc:	4603      	mov	r3, r0
+ 8001cbe:	461a      	mov	r2, r3
+ 8001cc0:	4b36      	ldr	r3, [pc, #216]	; (8001d9c <Count_Spurwechseltaste+0x124>)
+ 8001cc2:	701a      	strb	r2, [r3, #0]
+            if (Spurwechseltaste.Counter[Adresse] == 2)                         // 2 x Taste gedr�ckt
+ 8001cc4:	79fb      	ldrb	r3, [r7, #7]
+ 8001cc6:	4a33      	ldr	r2, [pc, #204]	; (8001d94 <Count_Spurwechseltaste+0x11c>)
+ 8001cc8:	5cd3      	ldrb	r3, [r2, r3]
+ 8001cca:	2b02      	cmp	r3, #2
+ 8001ccc:	d152      	bne.n	8001d74 <Count_Spurwechseltaste+0xfc>
+            {
+                if (Programmiermodus == NEIN)                                   // wenn kein Programmiermodus ist
+ 8001cce:	4b33      	ldr	r3, [pc, #204]	; (8001d9c <Count_Spurwechseltaste+0x124>)
+ 8001cd0:	781b      	ldrb	r3, [r3, #0]
+ 8001cd2:	2b00      	cmp	r3, #0
+ 8001cd4:	d109      	bne.n	8001cea <Count_Spurwechseltaste+0x72>
+                {
+                    EE_write_verified (Adresse+1, EE_ADR_PROGRAMMIERMODUS);     // Programmiermodus Adresse lernen einschalten, [MiZu] merken welcher Controller]
+ 8001cd6:	79fb      	ldrb	r3, [r7, #7]
+ 8001cd8:	3301      	adds	r3, #1
+ 8001cda:	b2db      	uxtb	r3, r3
+ 8001cdc:	2103      	movs	r1, #3
+ 8001cde:	4618      	mov	r0, r3
+ 8001ce0:	f000 f9a7 	bl	8002032 <EE_write_verified>
+                    Adr_warte_auf_Reset_timeout = PROGRAMMIER_TIMEOUT;          // wenn 2 Sekunden kein Neustart dann EEPROM wieder r�ckstellen
+ 8001ce4:	4b2e      	ldr	r3, [pc, #184]	; (8001da0 <Count_Spurwechseltaste+0x128>)
+ 8001ce6:	2214      	movs	r2, #20
+ 8001ce8:	701a      	strb	r2, [r3, #0]
+                }                                                               // wird erst nach Neustart wirksam
+
+                if (Programmiermodus == (Adresse+1))                            // [MiZu] erfordert aktivierung Programmiermodus und programmierung durch selben Controller
+ 8001cea:	4b2c      	ldr	r3, [pc, #176]	; (8001d9c <Count_Spurwechseltaste+0x124>)
+ 8001cec:	781b      	ldrb	r3, [r3, #0]
+ 8001cee:	461a      	mov	r2, r3
+ 8001cf0:	79fb      	ldrb	r3, [r7, #7]
+ 8001cf2:	3301      	adds	r3, #1
+ 8001cf4:	429a      	cmp	r2, r3
+ 8001cf6:	d13d      	bne.n	8001d74 <Count_Spurwechseltaste+0xfc>
+                {
+                    Programmiermodus = NEIN;                                    // Programmiermodus beenden
+ 8001cf8:	4b28      	ldr	r3, [pc, #160]	; (8001d9c <Count_Spurwechseltaste+0x124>)
+ 8001cfa:	2200      	movs	r2, #0
+ 8001cfc:	701a      	strb	r2, [r3, #0]
+                    EE_write_verified (NEIN, EE_ADR_PROGRAMMIERMODUS);          // und das auch merken
+ 8001cfe:	2103      	movs	r1, #3
+ 8001d00:	2000      	movs	r0, #0
+ 8001d02:	f000 f996 	bl	8002032 <EE_write_verified>
+                    Adr_Programmier_timeout = 0;
+ 8001d06:	4b27      	ldr	r3, [pc, #156]	; (8001da4 <Count_Spurwechseltaste+0x12c>)
+ 8001d08:	2200      	movs	r2, #0
+ 8001d0a:	701a      	strb	r2, [r3, #0]
+                    eigene_Adresse = Adresse;                                   // neue eigene Adresse
+ 8001d0c:	4a26      	ldr	r2, [pc, #152]	; (8001da8 <Count_Spurwechseltaste+0x130>)
+ 8001d0e:	79fb      	ldrb	r3, [r7, #7]
+ 8001d10:	7013      	strb	r3, [r2, #0]
+                    EE_write_verified (Adresse, EE_ADR_AUTO_ADRESSE);           // eigene Adresse merken
+ 8001d12:	79fb      	ldrb	r3, [r7, #7]
+ 8001d14:	2101      	movs	r1, #1
+ 8001d16:	4618      	mov	r0, r3
+ 8001d18:	f000 f98b 	bl	8002032 <EE_write_verified>
+                    Licht_einschalten();                                        // Licht einschalten
+ 8001d1c:	f000 f8e2 	bl	8001ee4 <Licht_einschalten>
+                    Licht_Sperr_Timer = LICHTSPERR_ZEIT;
+ 8001d20:	4b22      	ldr	r3, [pc, #136]	; (8001dac <Count_Spurwechseltaste+0x134>)
+ 8001d22:	2285      	movs	r2, #133	; 0x85
+ 8001d24:	701a      	strb	r2, [r3, #0]
+                    IR_LED_einschalten();                                       // IR LED Frequenz lt. Auto einstellen
+ 8001d26:	f000 f927 	bl	8001f78 <IR_LED_einschalten>
+                    
+                    for (index = 0; index < 20; index++)                        // kurz mit dem Motor ruckeln
+ 8001d2a:	2300      	movs	r3, #0
+ 8001d2c:	60fb      	str	r3, [r7, #12]
+ 8001d2e:	e014      	b.n	8001d5a <Count_Spurwechseltaste+0xe2>
+                    {
+                        //CCPR2L = 0; todo: gpio write pin                                            // Bremse abschalten
+                        delay_100us;
+                        //CCPR1L = 100; todo: gpio write pin                                           // Motor einschalten
+                        for (index_2 = 0; index_2 < 100; index_2++)
+ 8001d30:	2300      	movs	r3, #0
+ 8001d32:	60bb      	str	r3, [r7, #8]
+ 8001d34:	e002      	b.n	8001d3c <Count_Spurwechseltaste+0xc4>
+ 8001d36:	68bb      	ldr	r3, [r7, #8]
+ 8001d38:	3301      	adds	r3, #1
+ 8001d3a:	60bb      	str	r3, [r7, #8]
+ 8001d3c:	68bb      	ldr	r3, [r7, #8]
+ 8001d3e:	2b63      	cmp	r3, #99	; 0x63
+ 8001d40:	d9f9      	bls.n	8001d36 <Count_Spurwechseltaste+0xbe>
+                             delay_100us;
+                        //CCPR1L = 0;      todo gpio                                       // Motor abschalten
+                        for (index_2 = 0; index_2 < 100; index_2++)
+ 8001d42:	2300      	movs	r3, #0
+ 8001d44:	60bb      	str	r3, [r7, #8]
+ 8001d46:	e002      	b.n	8001d4e <Count_Spurwechseltaste+0xd6>
+ 8001d48:	68bb      	ldr	r3, [r7, #8]
+ 8001d4a:	3301      	adds	r3, #1
+ 8001d4c:	60bb      	str	r3, [r7, #8]
+ 8001d4e:	68bb      	ldr	r3, [r7, #8]
+ 8001d50:	2b63      	cmp	r3, #99	; 0x63
+ 8001d52:	d9f9      	bls.n	8001d48 <Count_Spurwechseltaste+0xd0>
+                    for (index = 0; index < 20; index++)                        // kurz mit dem Motor ruckeln
+ 8001d54:	68fb      	ldr	r3, [r7, #12]
+ 8001d56:	3301      	adds	r3, #1
+ 8001d58:	60fb      	str	r3, [r7, #12]
+ 8001d5a:	68fb      	ldr	r3, [r7, #12]
+ 8001d5c:	2b13      	cmp	r3, #19
+ 8001d5e:	d9e7      	bls.n	8001d30 <Count_Spurwechseltaste+0xb8>
+                             delay_100us;
+                    }
+
+                    Ghostcar_Doppelklick_timeout = PROGRAMMIER_TIMEOUT;         // 2 sec Zeit f�r Doppelklick um in Ghostcarmodus zu kommen
+ 8001d60:	4b13      	ldr	r3, [pc, #76]	; (8001db0 <Count_Spurwechseltaste+0x138>)
+ 8001d62:	2214      	movs	r2, #20
+ 8001d64:	701a      	strb	r2, [r3, #0]
+                    Ghostcar_Doppelklick_Counter = 0;                           // zum Z�hlen von 2 weiteren Klicks
+ 8001d66:	4b13      	ldr	r3, [pc, #76]	; (8001db4 <Count_Spurwechseltaste+0x13c>)
+ 8001d68:	2200      	movs	r2, #0
+ 8001d6a:	701a      	strb	r2, [r3, #0]
+                    Spurwechseltaste.Counter[Adresse] = 0;
+ 8001d6c:	79fb      	ldrb	r3, [r7, #7]
+ 8001d6e:	4a09      	ldr	r2, [pc, #36]	; (8001d94 <Count_Spurwechseltaste+0x11c>)
+ 8001d70:	2100      	movs	r1, #0
+ 8001d72:	54d1      	strb	r1, [r2, r3]
+                }
+            }
+        }
+    }
+
+    if ((Spurwechseltaste.Letzter_Zustand[Adresse] == GEDRUECKT) &&
+ 8001d74:	79fb      	ldrb	r3, [r7, #7]
+ 8001d76:	4a07      	ldr	r2, [pc, #28]	; (8001d94 <Count_Spurwechseltaste+0x11c>)
+ 8001d78:	4413      	add	r3, r2
+ 8001d7a:	799b      	ldrb	r3, [r3, #6]
+ 8001d7c:	2b00      	cmp	r3, #0
+    {
+        ;
+    }
+
+
+    Spurwechseltaste.Letzter_Zustand[Adresse] = CU_Daten.Spurwechseltaste;
+ 8001d7e:	79fb      	ldrb	r3, [r7, #7]
+ 8001d80:	4a05      	ldr	r2, [pc, #20]	; (8001d98 <Count_Spurwechseltaste+0x120>)
+ 8001d82:	7851      	ldrb	r1, [r2, #1]
+ 8001d84:	4a03      	ldr	r2, [pc, #12]	; (8001d94 <Count_Spurwechseltaste+0x11c>)
+ 8001d86:	4413      	add	r3, r2
+ 8001d88:	460a      	mov	r2, r1
+ 8001d8a:	719a      	strb	r2, [r3, #6]
+}
+ 8001d8c:	bf00      	nop
+ 8001d8e:	3710      	adds	r7, #16
+ 8001d90:	46bd      	mov	sp, r7
+ 8001d92:	bd80      	pop	{r7, pc}
+ 8001d94:	24000044 	.word	0x24000044
+ 8001d98:	24000034 	.word	0x24000034
+ 8001d9c:	24000058 	.word	0x24000058
+ 8001da0:	24000061 	.word	0x24000061
+ 8001da4:	24000060 	.word	0x24000060
+ 8001da8:	24000056 	.word	0x24000056
+ 8001dac:	2400005f 	.word	0x2400005f
+ 8001db0:	24000062 	.word	0x24000062
+ 8001db4:	24000063 	.word	0x24000063
+
+08001db8 <Eigene_Spurwechseltaste_auswerten>:
+ * wechselt u.U. in den Ghostcar Geschwindigkeitsprogrammiermode
+ *               oder in den Gostcarmode
+ * nur wenn der Motor min 1 sec aus ist
+ */
+void Eigene_Spurwechseltaste_auswerten(void)
+{
+ 8001db8:	b580      	push	{r7, lr}
+ 8001dba:	af00      	add	r7, sp, #0
+    if ((Letzter_Zustand_Licht_Taste == LOSGELASSEN) &&
+ 8001dbc:	4b39      	ldr	r3, [pc, #228]	; (8001ea4 <Eigene_Spurwechseltaste_auswerten+0xec>)
+ 8001dbe:	781b      	ldrb	r3, [r3, #0]
+ 8001dc0:	2b01      	cmp	r3, #1
+ 8001dc2:	d165      	bne.n	8001e90 <Eigene_Spurwechseltaste_auswerten+0xd8>
+        (CU_Daten.Spurwechseltaste == GEDRUECKT))
+ 8001dc4:	4b38      	ldr	r3, [pc, #224]	; (8001ea8 <Eigene_Spurwechseltaste_auswerten+0xf0>)
+ 8001dc6:	785b      	ldrb	r3, [r3, #1]
+    if ((Letzter_Zustand_Licht_Taste == LOSGELASSEN) &&
+ 8001dc8:	2b00      	cmp	r3, #0
+ 8001dca:	d161      	bne.n	8001e90 <Eigene_Spurwechseltaste_auswerten+0xd8>
+    {
+        if(Licht_Sperr_Timer == 0)                                              // Nur wenn der Motor schon etwas aus ist
+ 8001dcc:	4b37      	ldr	r3, [pc, #220]	; (8001eac <Eigene_Spurwechseltaste_auswerten+0xf4>)
+ 8001dce:	781b      	ldrb	r3, [r3, #0]
+ 8001dd0:	2b00      	cmp	r3, #0
+ 8001dd2:	d110      	bne.n	8001df6 <Eigene_Spurwechseltaste_auswerten+0x3e>
+        {            
+            Licht^= 1;
+ 8001dd4:	4b36      	ldr	r3, [pc, #216]	; (8001eb0 <Eigene_Spurwechseltaste_auswerten+0xf8>)
+ 8001dd6:	781b      	ldrb	r3, [r3, #0]
+ 8001dd8:	f083 0301 	eor.w	r3, r3, #1
+ 8001ddc:	b2da      	uxtb	r2, r3
+ 8001dde:	4b34      	ldr	r3, [pc, #208]	; (8001eb0 <Eigene_Spurwechseltaste_auswerten+0xf8>)
+ 8001de0:	701a      	strb	r2, [r3, #0]
+            if (Licht == 0)
+ 8001de2:	4b33      	ldr	r3, [pc, #204]	; (8001eb0 <Eigene_Spurwechseltaste_auswerten+0xf8>)
+ 8001de4:	781b      	ldrb	r3, [r3, #0]
+ 8001de6:	2b00      	cmp	r3, #0
+ 8001de8:	d005      	beq.n	8001df6 <Eigene_Spurwechseltaste_auswerten+0x3e>
+            	;
+               // Pin_o_LICHT = 0; todo: macro gegen was anderes ersetzen                                               // Licht umschalten
+            else
+               // Pin_o_LICHT = 1; todo: macro gegen was anderes ersetzen                                               // Licht umschalten
+            EE_write (Licht, EE_ADR_LICHT);                                     // und merken
+ 8001dea:	4b31      	ldr	r3, [pc, #196]	; (8001eb0 <Eigene_Spurwechseltaste_auswerten+0xf8>)
+ 8001dec:	781b      	ldrb	r3, [r3, #0]
+ 8001dee:	2102      	movs	r1, #2
+ 8001df0:	4618      	mov	r0, r3
+ 8001df2:	f000 f94b 	bl	800208c <EE_write>
+        }
+
+        if (Ghostcar_Doppelklick_timeout > 0)                                   // wenn gerade Zeitfenster f�r Doppelklick f�r Ghostcarmode offen ist
+ 8001df6:	4b2f      	ldr	r3, [pc, #188]	; (8001eb4 <Eigene_Spurwechseltaste_auswerten+0xfc>)
+ 8001df8:	781b      	ldrb	r3, [r3, #0]
+ 8001dfa:	2b00      	cmp	r3, #0
+ 8001dfc:	d016      	beq.n	8001e2c <Eigene_Spurwechseltaste_auswerten+0x74>
+        {
+            Ghostcar_Doppelklick_Counter++;
+ 8001dfe:	4b2e      	ldr	r3, [pc, #184]	; (8001eb8 <Eigene_Spurwechseltaste_auswerten+0x100>)
+ 8001e00:	781b      	ldrb	r3, [r3, #0]
+ 8001e02:	3301      	adds	r3, #1
+ 8001e04:	b2da      	uxtb	r2, r3
+ 8001e06:	4b2c      	ldr	r3, [pc, #176]	; (8001eb8 <Eigene_Spurwechseltaste_auswerten+0x100>)
+ 8001e08:	701a      	strb	r2, [r3, #0]
+            if (Ghostcar_Doppelklick_Counter == 3)                              // Ein Klick war schon vorher da
+ 8001e0a:	4b2b      	ldr	r3, [pc, #172]	; (8001eb8 <Eigene_Spurwechseltaste_auswerten+0x100>)
+ 8001e0c:	781b      	ldrb	r3, [r3, #0]
+ 8001e0e:	2b03      	cmp	r3, #3
+ 8001e10:	d13e      	bne.n	8001e90 <Eigene_Spurwechseltaste_auswerten+0xd8>
+            {
+                Ghostcar_Doppelklick_timeout = 0;                               // warten auf den Doppelklick abbrechen
+ 8001e12:	4b28      	ldr	r3, [pc, #160]	; (8001eb4 <Eigene_Spurwechseltaste_auswerten+0xfc>)
+ 8001e14:	2200      	movs	r2, #0
+ 8001e16:	701a      	strb	r2, [r3, #0]
+                Ghostcar_Programmiermodus = JA;
+ 8001e18:	4b28      	ldr	r3, [pc, #160]	; (8001ebc <Eigene_Spurwechseltaste_auswerten+0x104>)
+ 8001e1a:	2201      	movs	r2, #1
+ 8001e1c:	701a      	strb	r2, [r3, #0]
+                EE_write_verified(Ghostcar_Programmiermodus, EE_ADR_GHOST_PROGRAMMIERMODUS);
+ 8001e1e:	4b27      	ldr	r3, [pc, #156]	; (8001ebc <Eigene_Spurwechseltaste_auswerten+0x104>)
+ 8001e20:	781b      	ldrb	r3, [r3, #0]
+ 8001e22:	2108      	movs	r1, #8
+ 8001e24:	4618      	mov	r0, r3
+ 8001e26:	f000 f904 	bl	8002032 <EE_write_verified>
+ 8001e2a:	e031      	b.n	8001e90 <Eigene_Spurwechseltaste_auswerten+0xd8>
+            }
+        }
+        else
+        {
+            Ghostcar_Programmiermodus = EE_read(EE_ADR_GHOST_PROGRAMMIERMODUS);                    
+ 8001e2c:	2008      	movs	r0, #8
+ 8001e2e:	f000 f8f4 	bl	800201a <EE_read>
+ 8001e32:	4603      	mov	r3, r0
+ 8001e34:	461a      	mov	r2, r3
+ 8001e36:	4b21      	ldr	r3, [pc, #132]	; (8001ebc <Eigene_Spurwechseltaste_auswerten+0x104>)
+ 8001e38:	701a      	strb	r2, [r3, #0]
+            if (Ghostcar_Programmiermodus == JA)                                // Wenn gerade die Ghostcar Geschwindigkeit eingestellt wird
+ 8001e3a:	4b20      	ldr	r3, [pc, #128]	; (8001ebc <Eigene_Spurwechseltaste_auswerten+0x104>)
+ 8001e3c:	781b      	ldrb	r3, [r3, #0]
+ 8001e3e:	2b01      	cmp	r3, #1
+ 8001e40:	d126      	bne.n	8001e90 <Eigene_Spurwechseltaste_auswerten+0xd8>
+            {
+                Ghostcar_Programmiermodus = NEIN;                               // dann Ghostcar Programmiermodus beenden
+ 8001e42:	4b1e      	ldr	r3, [pc, #120]	; (8001ebc <Eigene_Spurwechseltaste_auswerten+0x104>)
+ 8001e44:	2200      	movs	r2, #0
+ 8001e46:	701a      	strb	r2, [r3, #0]
+                EE_write_verified(Ghostcar_Programmiermodus, EE_ADR_GHOST_PROGRAMMIERMODUS);
+ 8001e48:	4b1c      	ldr	r3, [pc, #112]	; (8001ebc <Eigene_Spurwechseltaste_auswerten+0x104>)
+ 8001e4a:	781b      	ldrb	r3, [r3, #0]
+ 8001e4c:	2108      	movs	r1, #8
+ 8001e4e:	4618      	mov	r0, r3
+ 8001e50:	f000 f8ef 	bl	8002032 <EE_write_verified>
+                if (CU_Daten.Reglerwert > 0)                                    // wenn die Geschwindigkeit > 0 ist
+ 8001e54:	4b14      	ldr	r3, [pc, #80]	; (8001ea8 <Eigene_Spurwechseltaste_auswerten+0xf0>)
+ 8001e56:	789b      	ldrb	r3, [r3, #2]
+ 8001e58:	2b00      	cmp	r3, #0
+ 8001e5a:	d019      	beq.n	8001e90 <Eigene_Spurwechseltaste_auswerten+0xd8>
+                {
+                    v_Ghostcar = CU_Daten.Reglerwert;
+ 8001e5c:	4b12      	ldr	r3, [pc, #72]	; (8001ea8 <Eigene_Spurwechseltaste_auswerten+0xf0>)
+ 8001e5e:	789a      	ldrb	r2, [r3, #2]
+ 8001e60:	4b17      	ldr	r3, [pc, #92]	; (8001ec0 <Eigene_Spurwechseltaste_auswerten+0x108>)
+ 8001e62:	701a      	strb	r2, [r3, #0]
+                    EE_write_verified(v_Ghostcar, EE_ADR_GHOST_GESCHWINDIGKEIT);
+ 8001e64:	4b16      	ldr	r3, [pc, #88]	; (8001ec0 <Eigene_Spurwechseltaste_auswerten+0x108>)
+ 8001e66:	781b      	ldrb	r3, [r3, #0]
+ 8001e68:	2107      	movs	r1, #7
+ 8001e6a:	4618      	mov	r0, r3
+ 8001e6c:	f000 f8e1 	bl	8002032 <EE_write_verified>
+                    eigene_Adresse = GHOSTCAR_ADRESSE;
+ 8001e70:	4b14      	ldr	r3, [pc, #80]	; (8001ec4 <Eigene_Spurwechseltaste_auswerten+0x10c>)
+ 8001e72:	2206      	movs	r2, #6
+ 8001e74:	701a      	strb	r2, [r3, #0]
+                    EE_write_verified(eigene_Adresse, EE_ADR_AUTO_ADRESSE);
+ 8001e76:	4b13      	ldr	r3, [pc, #76]	; (8001ec4 <Eigene_Spurwechseltaste_auswerten+0x10c>)
+ 8001e78:	781b      	ldrb	r3, [r3, #0]
+ 8001e7a:	2101      	movs	r1, #1
+ 8001e7c:	4618      	mov	r0, r3
+ 8001e7e:	f000 f8d8 	bl	8002032 <EE_write_verified>
+                    Licht_einschalten();                                        // Licht einschalten
+ 8001e82:	f000 f82f 	bl	8001ee4 <Licht_einschalten>
+                    Licht_Sperr_Timer = LICHTSPERR_ZEIT;
+ 8001e86:	4b09      	ldr	r3, [pc, #36]	; (8001eac <Eigene_Spurwechseltaste_auswerten+0xf4>)
+ 8001e88:	2285      	movs	r2, #133	; 0x85
+ 8001e8a:	701a      	strb	r2, [r3, #0]
+                    IR_LED_einschalten();                                       // IR Frequenz auf Ghostcar
+ 8001e8c:	f000 f874 	bl	8001f78 <IR_LED_einschalten>
+                }
+             }
+        }
+    }
+
+    if ((Letzter_Zustand_Licht_Taste == GEDRUECKT) &&
+ 8001e90:	4b04      	ldr	r3, [pc, #16]	; (8001ea4 <Eigene_Spurwechseltaste_auswerten+0xec>)
+ 8001e92:	781b      	ldrb	r3, [r3, #0]
+ 8001e94:	2b00      	cmp	r3, #0
+        (CU_Daten.Spurwechseltaste == LOSGELASSEN))
+    {
+        ;
+    }
+
+    Letzter_Zustand_Licht_Taste = CU_Daten.Spurwechseltaste;
+ 8001e96:	4b04      	ldr	r3, [pc, #16]	; (8001ea8 <Eigene_Spurwechseltaste_auswerten+0xf0>)
+ 8001e98:	785a      	ldrb	r2, [r3, #1]
+ 8001e9a:	4b02      	ldr	r3, [pc, #8]	; (8001ea4 <Eigene_Spurwechseltaste_auswerten+0xec>)
+ 8001e9c:	701a      	strb	r2, [r3, #0]
+
+}
+ 8001e9e:	bf00      	nop
+ 8001ea0:	bd80      	pop	{r7, pc}
+ 8001ea2:	bf00      	nop
+ 8001ea4:	2400005e 	.word	0x2400005e
+ 8001ea8:	24000034 	.word	0x24000034
+ 8001eac:	2400005f 	.word	0x2400005f
+ 8001eb0:	2400005a 	.word	0x2400005a
+ 8001eb4:	24000062 	.word	0x24000062
+ 8001eb8:	24000063 	.word	0x24000063
+ 8001ebc:	24000059 	.word	0x24000059
+ 8001ec0:	24000057 	.word	0x24000057
+ 8001ec4:	24000056 	.word	0x24000056
+
+08001ec8 <Licht_schalten>:
+
+/**
+ * schaltet in Abh�ngigkeit vom EEPROM Wert das Licht ein oder aus
+ */
+void Licht_schalten (void)
+{
+ 8001ec8:	b580      	push	{r7, lr}
+ 8001eca:	af00      	add	r7, sp, #0
+    Licht = EE_read(EE_ADR_LICHT);
+ 8001ecc:	2002      	movs	r0, #2
+ 8001ece:	f000 f8a4 	bl	800201a <EE_read>
+ 8001ed2:	4603      	mov	r3, r0
+ 8001ed4:	461a      	mov	r2, r3
+ 8001ed6:	4b02      	ldr	r3, [pc, #8]	; (8001ee0 <Licht_schalten+0x18>)
+ 8001ed8:	701a      	strb	r2, [r3, #0]
+    	;
+        //Pin_o_LICHT = 0; todo makro gpio
+    else
+        //Pin_o_LICHT = 1; todo makro gpio
+    	;
+}
+ 8001eda:	bf00      	nop
+ 8001edc:	bd80      	pop	{r7, pc}
+ 8001ede:	bf00      	nop
+ 8001ee0:	2400005a 	.word	0x2400005a
+
+08001ee4 <Licht_einschalten>:
+
+/**
+ * Licht einschalten und speichern
+ */
+ void Licht_einschalten (void)
+ {
+ 8001ee4:	b580      	push	{r7, lr}
+ 8001ee6:	af00      	add	r7, sp, #0
+     Licht = 1;
+ 8001ee8:	4b05      	ldr	r3, [pc, #20]	; (8001f00 <Licht_einschalten+0x1c>)
+ 8001eea:	2201      	movs	r2, #1
+ 8001eec:	701a      	strb	r2, [r3, #0]
+     //Pin_o_LICHT = 1; todo makro gpio
+     EE_write (Licht, EE_ADR_LICHT);
+ 8001eee:	4b04      	ldr	r3, [pc, #16]	; (8001f00 <Licht_einschalten+0x1c>)
+ 8001ef0:	781b      	ldrb	r3, [r3, #0]
+ 8001ef2:	2102      	movs	r1, #2
+ 8001ef4:	4618      	mov	r0, r3
+ 8001ef6:	f000 f8c9 	bl	800208c <EE_write>
+ }
+ 8001efa:	bf00      	nop
+ 8001efc:	bd80      	pop	{r7, pc}
+ 8001efe:	bf00      	nop
+ 8001f00:	2400005a 	.word	0x2400005a
+
+08001f04 <Parameter_verarbeiten>:
+ * es wurde ein CU Programmierdatenwort mit der eigenen Adresse empfangen
+ * Bremswert und max. Geschwindigkeit wird eingespeichert
+ * der Rest wird ignoriert
+ */
+void Parameter_verarbeiten(void)
+{
+ 8001f04:	b580      	push	{r7, lr}
+ 8001f06:	b082      	sub	sp, #8
+ 8001f08:	af00      	add	r7, sp, #0
+    U8      Bremswirkung,
+            v_max;
+    
+    
+    switch(CU_Prg_Daten.Parameter)
+ 8001f0a:	4b1a      	ldr	r3, [pc, #104]	; (8001f74 <Parameter_verarbeiten+0x70>)
+ 8001f0c:	789b      	ldrb	r3, [r3, #2]
+ 8001f0e:	2b04      	cmp	r3, #4
+ 8001f10:	d82b      	bhi.n	8001f6a <Parameter_verarbeiten+0x66>
+ 8001f12:	a201      	add	r2, pc, #4	; (adr r2, 8001f18 <Parameter_verarbeiten+0x14>)
+ 8001f14:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 8001f18:	08001f2d 	.word	0x08001f2d
+ 8001f1c:	08001f47 	.word	0x08001f47
+ 8001f20:	08001f61 	.word	0x08001f61
+ 8001f24:	08001f61 	.word	0x08001f61
+ 8001f28:	08001f61 	.word	0x08001f61
+    {
+        case PRG_MAX_GESCHWINDIGKEIT:
+            if (CU_Prg_Daten.Wert <= 15)                                        // Wert muss kleiner 15 sein            
+ 8001f2c:	4b11      	ldr	r3, [pc, #68]	; (8001f74 <Parameter_verarbeiten+0x70>)
+ 8001f2e:	785b      	ldrb	r3, [r3, #1]
+ 8001f30:	2b0f      	cmp	r3, #15
+ 8001f32:	d817      	bhi.n	8001f64 <Parameter_verarbeiten+0x60>
+            {
+                v_max = CU_Prg_Daten.Wert;
+ 8001f34:	4b0f      	ldr	r3, [pc, #60]	; (8001f74 <Parameter_verarbeiten+0x70>)
+ 8001f36:	785b      	ldrb	r3, [r3, #1]
+ 8001f38:	71bb      	strb	r3, [r7, #6]
+                EE_write_verified(v_max, EE_ADR_MAX_GESCHWINDIGKEIT);
+ 8001f3a:	79bb      	ldrb	r3, [r7, #6]
+ 8001f3c:	2105      	movs	r1, #5
+ 8001f3e:	4618      	mov	r0, r3
+ 8001f40:	f000 f877 	bl	8002032 <EE_write_verified>
+            }
+            break;
+ 8001f44:	e00e      	b.n	8001f64 <Parameter_verarbeiten+0x60>
+        case PRG_BREMSWIRKUNG:
+            if (CU_Prg_Daten.Wert <= 15)                                        // Wert muss kleiner 15 sein
+ 8001f46:	4b0b      	ldr	r3, [pc, #44]	; (8001f74 <Parameter_verarbeiten+0x70>)
+ 8001f48:	785b      	ldrb	r3, [r3, #1]
+ 8001f4a:	2b0f      	cmp	r3, #15
+ 8001f4c:	d80c      	bhi.n	8001f68 <Parameter_verarbeiten+0x64>
+            {
+                Bremswirkung = CU_Prg_Daten.Wert;
+ 8001f4e:	4b09      	ldr	r3, [pc, #36]	; (8001f74 <Parameter_verarbeiten+0x70>)
+ 8001f50:	785b      	ldrb	r3, [r3, #1]
+ 8001f52:	71fb      	strb	r3, [r7, #7]
+                EE_write_verified(Bremswirkung, EE_ADR_BREMSWIRKUNG);
+ 8001f54:	79fb      	ldrb	r3, [r7, #7]
+ 8001f56:	2104      	movs	r1, #4
+ 8001f58:	4618      	mov	r0, r3
+ 8001f5a:	f000 f86a 	bl	8002032 <EE_write_verified>
+            }
+            break;
+ 8001f5e:	e003      	b.n	8001f68 <Parameter_verarbeiten+0x64>
+        case PRG_TANK_INHALT:
+            break;
+ 8001f60:	bf00      	nop
+ 8001f62:	e002      	b.n	8001f6a <Parameter_verarbeiten+0x66>
+            break;
+ 8001f64:	bf00      	nop
+ 8001f66:	e000      	b.n	8001f6a <Parameter_verarbeiten+0x66>
+            break;
+ 8001f68:	bf00      	nop
+        case PRG_CU_RESET:
+            break;
+        case PRG_NORMALBETRIEB:
+            break;
+    }
+}
+ 8001f6a:	bf00      	nop
+ 8001f6c:	3708      	adds	r7, #8
+ 8001f6e:	46bd      	mov	sp, r7
+ 8001f70:	bd80      	pop	{r7, pc}
+ 8001f72:	bf00      	nop
+ 8001f74:	2400003c 	.word	0x2400003c
+
+08001f78 <IR_LED_einschalten>:
+
+/**
+ * schaltet die PWM Frequenz der IR LED entsprechend der Auto Nummer
+ */
+void IR_LED_einschalten(void)
+{    
+ 8001f78:	b580      	push	{r7, lr}
+ 8001f7a:	af00      	add	r7, sp, #0
+    eigene_Adresse = EE_read(EE_ADR_AUTO_ADRESSE);
+ 8001f7c:	2001      	movs	r0, #1
+ 8001f7e:	f000 f84c 	bl	800201a <EE_read>
+ 8001f82:	4603      	mov	r3, r0
+ 8001f84:	461a      	mov	r2, r3
+ 8001f86:	4b1a      	ldr	r3, [pc, #104]	; (8001ff0 <IR_LED_einschalten+0x78>)
+ 8001f88:	701a      	strb	r2, [r3, #0]
+    switch (eigene_Adresse)
+ 8001f8a:	4b19      	ldr	r3, [pc, #100]	; (8001ff0 <IR_LED_einschalten+0x78>)
+ 8001f8c:	781b      	ldrb	r3, [r3, #0]
+ 8001f8e:	2b06      	cmp	r3, #6
+ 8001f90:	d82c      	bhi.n	8001fec <IR_LED_einschalten+0x74>
+ 8001f92:	a201      	add	r2, pc, #4	; (adr r2, 8001f98 <IR_LED_einschalten+0x20>)
+ 8001f94:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 8001f98:	08001fb5 	.word	0x08001fb5
+ 8001f9c:	08001fbd 	.word	0x08001fbd
+ 8001fa0:	08001fc5 	.word	0x08001fc5
+ 8001fa4:	08001fcd 	.word	0x08001fcd
+ 8001fa8:	08001fd5 	.word	0x08001fd5
+ 8001fac:	08001fdd 	.word	0x08001fdd
+ 8001fb0:	08001fe5 	.word	0x08001fe5
+    {
+        case AUTO_1_ADRESSE:
+            Init_CCP3(IR_LED_PWM_CAR_1);             // CCP3 f�r IR LED
+ 8001fb4:	201f      	movs	r0, #31
+ 8001fb6:	f7ff fca3 	bl	8001900 <Init_CCP3>
+            break;
+ 8001fba:	e017      	b.n	8001fec <IR_LED_einschalten+0x74>
+        case AUTO_2_ADRESSE:
+            Init_CCP3(IR_LED_PWM_CAR_2);             // CCP3 f�r IR LED
+ 8001fbc:	203f      	movs	r0, #63	; 0x3f
+ 8001fbe:	f7ff fc9f 	bl	8001900 <Init_CCP3>
+            break;
+ 8001fc2:	e013      	b.n	8001fec <IR_LED_einschalten+0x74>
+        case AUTO_3_ADRESSE:
+            Init_CCP3(IR_LED_PWM_CAR_3);             // CCP3 f�r IR LED
+ 8001fc4:	205f      	movs	r0, #95	; 0x5f
+ 8001fc6:	f7ff fc9b 	bl	8001900 <Init_CCP3>
+            break;
+ 8001fca:	e00f      	b.n	8001fec <IR_LED_einschalten+0x74>
+        case AUTO_4_ADRESSE: 
+            Init_CCP3(IR_LED_PWM_CAR_4);             // CCP3 f�r IR LED
+ 8001fcc:	207f      	movs	r0, #127	; 0x7f
+ 8001fce:	f7ff fc97 	bl	8001900 <Init_CCP3>
+            break;
+ 8001fd2:	e00b      	b.n	8001fec <IR_LED_einschalten+0x74>
+        case AUTO_5_ADRESSE: 
+            Init_CCP3(IR_LED_PWM_CAR_5);             // CCP3 f�r IR LED
+ 8001fd4:	209f      	movs	r0, #159	; 0x9f
+ 8001fd6:	f7ff fc93 	bl	8001900 <Init_CCP3>
+            break;
+ 8001fda:	e007      	b.n	8001fec <IR_LED_einschalten+0x74>
+        case AUTO_6_ADRESSE: 
+            Init_CCP3(IR_LED_PWM_CAR_6);             // CCP3 f�r IR LED
+ 8001fdc:	20bf      	movs	r0, #191	; 0xbf
+ 8001fde:	f7ff fc8f 	bl	8001900 <Init_CCP3>
+            break;
+ 8001fe2:	e003      	b.n	8001fec <IR_LED_einschalten+0x74>
+        case GHOSTCAR_ADRESSE:                       // Adresse 6
+            Init_CCP3(IR_LED_PWM_CAR_7);             // CCP3 f�r IR LED
+ 8001fe4:	20df      	movs	r0, #223	; 0xdf
+ 8001fe6:	f7ff fc8b 	bl	8001900 <Init_CCP3>
+            break;
+ 8001fea:	bf00      	nop
+        //case PACECAR_ADRESSE:                       // Adresse 7
+        //    Init_CCP3(IR_LED_PWM_CAR_8);            // CCP3 f�r IR LED
+        //    break;
+    }
+
+}
+ 8001fec:	bf00      	nop
+ 8001fee:	bd80      	pop	{r7, pc}
+ 8001ff0:	24000056 	.word	0x24000056
+
+08001ff4 <delay_100us>:
+/**
+ * kurze Warteschleife
+ * ca. 100�s, C-Compiler ohne Optimierung
+ */
+void delay_100us (void)
+{
+ 8001ff4:	b480      	push	{r7}
+ 8001ff6:	b083      	sub	sp, #12
+ 8001ff8:	af00      	add	r7, sp, #0
+    U8  index;
+
+    for (index = 0; index < 30; index++)
+ 8001ffa:	2300      	movs	r3, #0
+ 8001ffc:	71fb      	strb	r3, [r7, #7]
+ 8001ffe:	e002      	b.n	8002006 <delay_100us+0x12>
+ 8002000:	79fb      	ldrb	r3, [r7, #7]
+ 8002002:	3301      	adds	r3, #1
+ 8002004:	71fb      	strb	r3, [r7, #7]
+ 8002006:	79fb      	ldrb	r3, [r7, #7]
+ 8002008:	2b1d      	cmp	r3, #29
+ 800200a:	d9f9      	bls.n	8002000 <delay_100us+0xc>
+    {
+        ;
+    }
+
+}
+ 800200c:	bf00      	nop
+ 800200e:	bf00      	nop
+ 8002010:	370c      	adds	r7, #12
+ 8002012:	46bd      	mov	sp, r7
+ 8002014:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8002018:	4770      	bx	lr
+
+0800201a <EE_read>:
+ * 
+ * @param Adresse   Adresse im EEPROM 0 ... 255
+ * @return          ausgelesener Wert
+ */
+U8 EE_read (U8 Adresse)
+{
+ 800201a:	b480      	push	{r7}
+ 800201c:	b085      	sub	sp, #20
+ 800201e:	af00      	add	r7, sp, #0
+ 8002020:	4603      	mov	r3, r0
+ 8002022:	71fb      	strb	r3, [r7, #7]
+//    Databyte = EEDATL;
+
+    //replace with code for external eeprom or some other mean to save data or just fuck it and hard code it
+
+
+    return (Databyte);
+ 8002024:	7bfb      	ldrb	r3, [r7, #15]
+}
+ 8002026:	4618      	mov	r0, r3
+ 8002028:	3714      	adds	r7, #20
+ 800202a:	46bd      	mov	sp, r7
+ 800202c:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8002030:	4770      	bx	lr
+
+08002032 <EE_write_verified>:
+ * @param Databyte      Daten Byte
+ * @param Adresse       Adresse im EEPROM 0 ... 255
+ * @return              OK wenn verify fehlerfrei, sonst NOK
+ */
+U8 EE_write_verified (U8 Databyte, U8 Adresse)
+{
+ 8002032:	b580      	push	{r7, lr}
+ 8002034:	b084      	sub	sp, #16
+ 8002036:	af00      	add	r7, sp, #0
+ 8002038:	4603      	mov	r3, r0
+ 800203a:	460a      	mov	r2, r1
+ 800203c:	71fb      	strb	r3, [r7, #7]
+ 800203e:	4613      	mov	r3, r2
+ 8002040:	71bb      	strb	r3, [r7, #6]
+    U8      Ergebnis,
+            Versuche,
+            Testbyte;
+
+
+    Versuche = 5;
+ 8002042:	2305      	movs	r3, #5
+ 8002044:	73bb      	strb	r3, [r7, #14]
+    Ergebnis = NOK;
+ 8002046:	2300      	movs	r3, #0
+ 8002048:	73fb      	strb	r3, [r7, #15]
+    while ((Versuche > 0) && (Ergebnis == NOK))
+ 800204a:	e014      	b.n	8002076 <EE_write_verified+0x44>
+    {
+         EE_write (Databyte, Adresse);
+ 800204c:	79ba      	ldrb	r2, [r7, #6]
+ 800204e:	79fb      	ldrb	r3, [r7, #7]
+ 8002050:	4611      	mov	r1, r2
+ 8002052:	4618      	mov	r0, r3
+ 8002054:	f000 f81a 	bl	800208c <EE_write>
+         Testbyte = EE_read (Adresse);
+ 8002058:	79bb      	ldrb	r3, [r7, #6]
+ 800205a:	4618      	mov	r0, r3
+ 800205c:	f7ff ffdd 	bl	800201a <EE_read>
+ 8002060:	4603      	mov	r3, r0
+ 8002062:	737b      	strb	r3, [r7, #13]
+         if (Testbyte == Databyte)
+ 8002064:	7b7a      	ldrb	r2, [r7, #13]
+ 8002066:	79fb      	ldrb	r3, [r7, #7]
+ 8002068:	429a      	cmp	r2, r3
+ 800206a:	d101      	bne.n	8002070 <EE_write_verified+0x3e>
+             Ergebnis = OK;
+ 800206c:	2301      	movs	r3, #1
+ 800206e:	73fb      	strb	r3, [r7, #15]
+         Versuche--;
+ 8002070:	7bbb      	ldrb	r3, [r7, #14]
+ 8002072:	3b01      	subs	r3, #1
+ 8002074:	73bb      	strb	r3, [r7, #14]
+    while ((Versuche > 0) && (Ergebnis == NOK))
+ 8002076:	7bbb      	ldrb	r3, [r7, #14]
+ 8002078:	2b00      	cmp	r3, #0
+ 800207a:	d002      	beq.n	8002082 <EE_write_verified+0x50>
+ 800207c:	7bfb      	ldrb	r3, [r7, #15]
+ 800207e:	2b00      	cmp	r3, #0
+ 8002080:	d0e4      	beq.n	800204c <EE_write_verified+0x1a>
+    }
+    
+    
+    return(Ergebnis);
+ 8002082:	7bfb      	ldrb	r3, [r7, #15]
+}
+ 8002084:	4618      	mov	r0, r3
+ 8002086:	3710      	adds	r7, #16
+ 8002088:	46bd      	mov	sp, r7
+ 800208a:	bd80      	pop	{r7, pc}
+
+0800208c <EE_write>:
+ * 
+ * @param Databyte      Daten Byte
+ * @param Adresse       Adresse im EEPROM 0 ... 255
+ */
+void EE_write (U8 Databyte, U8 Adresse)
+{
+ 800208c:	b480      	push	{r7}
+ 800208e:	b083      	sub	sp, #12
+ 8002090:	af00      	add	r7, sp, #0
+ 8002092:	4603      	mov	r3, r0
+ 8002094:	460a      	mov	r2, r1
+ 8002096:	71fb      	strb	r3, [r7, #7]
+ 8002098:	4613      	mov	r3, r2
+ 800209a:	71bb      	strb	r3, [r7, #6]
+//    {
+//        NOP();
+//    }
+
+	//replace with code for external eeprom
+}
+ 800209c:	bf00      	nop
+ 800209e:	370c      	adds	r7, #12
+ 80020a0:	46bd      	mov	sp, r7
+ 80020a2:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80020a6:	4770      	bx	lr
+
+080020a8 <mainInit>:
 extern "C" void mainInit();
 extern "C" void mainProcces();
 
+U8 Adresse;
 
 void mainInit()  {
- 80018f4:	b480      	push	{r7}
- 80018f6:	af00      	add	r7, sp, #0
+ 80020a8:	b580      	push	{r7, lr}
+ 80020aa:	af00      	add	r7, sp, #0
+   // U8      Adresse; todo weil main aufgeteilt wurde wird diese variable global
+
+
+//    OSCCONbits.IRCF = 0b1110;                                                   // interner Oszillator auf 8 MHz (4xPLL = 32 MHz)
+
+    Initialisierung();                                                          // Ports, Timer etc.
+ 80020ac:	f7ff fc22 	bl	80018f4 <Initialisierung>
+
+    Init_EEPROM_Defaultwerte();
+ 80020b0:	f7ff fc80 	bl	80019b4 <Init_EEPROM_Defaultwerte>
+//    WDTCONbits.SWDTEN = 1;                                                      // Watchdog einschalten
+//    CLRWDT();                                                                   // clear Watchdog
+
+    //--------------------------------------------------------------------------
+
+    Licht_schalten();                                                           // je nach Wert im EEPROM Licht ein oder aus
+ 80020b4:	f7ff ff08 	bl	8001ec8 <Licht_schalten>
+    IR_LED_einschalten();                                                       // mit der Frequenz entsprechend der Car Adresse
+ 80020b8:	f7ff ff5e 	bl	8001f78 <IR_LED_einschalten>
+
+    //--------------------------------------------------------------------------
+    //if ((EE_read(EE_ADR_PROGRAMMIERMODUS)) == JA)                               // Auto Adresse Programmiermodus JA/NEIN
+    if ((EE_read(EE_ADR_PROGRAMMIERMODUS)) != NEIN)                             // Auto Adresse Programmiermodus NEIN, [MiZu] oder Controller ID, die Programmierung angefordert hat
+ 80020bc:	2003      	movs	r0, #3
+ 80020be:	f7ff ffac 	bl	800201a <EE_read>
+ 80020c2:	4603      	mov	r3, r0
+ 80020c4:	2b00      	cmp	r3, #0
+ 80020c6:	bf14      	ite	ne
+ 80020c8:	2301      	movne	r3, #1
+ 80020ca:	2300      	moveq	r3, #0
+ 80020cc:	b2db      	uxtb	r3, r3
+ 80020ce:	2b00      	cmp	r3, #0
+ 80020d0:	d003      	beq.n	80020da <mainInit+0x32>
+        Adr_Programmier_timeout = PROGRAMMIER_TIMEOUT;                          // ca. 3 sec Programmierm�glichkeit f�r Adresse
+ 80020d2:	4b04      	ldr	r3, [pc, #16]	; (80020e4 <mainInit+0x3c>)
+ 80020d4:	2214      	movs	r2, #20
+ 80020d6:	701a      	strb	r2, [r3, #0]
+    else
+        Adr_Programmier_timeout = 0;
 
 }
- 80018f8:	bf00      	nop
- 80018fa:	46bd      	mov	sp, r7
- 80018fc:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8001900:	4770      	bx	lr
+ 80020d8:	e002      	b.n	80020e0 <mainInit+0x38>
+        Adr_Programmier_timeout = 0;
+ 80020da:	4b02      	ldr	r3, [pc, #8]	; (80020e4 <mainInit+0x3c>)
+ 80020dc:	2200      	movs	r2, #0
+ 80020de:	701a      	strb	r2, [r3, #0]
+}
+ 80020e0:	bf00      	nop
+ 80020e2:	bd80      	pop	{r7, pc}
+ 80020e4:	24000060 	.word	0x24000060
 
-08001902 <mainProcces>:
+080020e8 <mainProcces>:
 
 void mainProcces() {
- 8001902:	b480      	push	{r7}
- 8001904:	af00      	add	r7, sp, #0
+ 80020e8:	b580      	push	{r7, lr}
+ 80020ea:	af00      	add	r7, sp, #0
+	if (Telegramm_empfangen == JA)                                          // alle 7,5 msec
+ 80020ec:	4b91      	ldr	r3, [pc, #580]	; (8002334 <mainProcces+0x24c>)
+ 80020ee:	781b      	ldrb	r3, [r3, #0]
+ 80020f0:	2b01      	cmp	r3, #1
+ 80020f2:	f040 8188 	bne.w	8002406 <mainProcces+0x31e>
+	        {
+//	            CLRWDT();                                                           // clear Watchdog
 
+	            Telegramm_empfangen = NEIN;
+ 80020f6:	4b8f      	ldr	r3, [pc, #572]	; (8002334 <mainProcces+0x24c>)
+ 80020f8:	2200      	movs	r2, #0
+ 80020fa:	701a      	strb	r2, [r3, #0]
+
+	            DataBit[0] = 'X';                                                   // Startbit ung�ltig machen f�r erneutemn Empfang
+ 80020fc:	4b8e      	ldr	r3, [pc, #568]	; (8002338 <mainProcces+0x250>)
+ 80020fe:	2258      	movs	r2, #88	; 0x58
+ 8002100:	701a      	strb	r2, [r3, #0]
+	            Timer_Counter++;                                                    // allgemeiner Timer 7,5 ms
+ 8002102:	4b8e      	ldr	r3, [pc, #568]	; (800233c <mainProcces+0x254>)
+ 8002104:	781b      	ldrb	r3, [r3, #0]
+ 8002106:	3301      	adds	r3, #1
+ 8002108:	b2da      	uxtb	r2, r3
+ 800210a:	4b8c      	ldr	r3, [pc, #560]	; (800233c <mainProcces+0x254>)
+ 800210c:	701a      	strb	r2, [r3, #0]
+
+	            //...................................................
+
+	            if (Licht_Sperr_Timer > 0)                                          // auf Null z�hlen
+ 800210e:	4b8c      	ldr	r3, [pc, #560]	; (8002340 <mainProcces+0x258>)
+ 8002110:	781b      	ldrb	r3, [r3, #0]
+ 8002112:	2b00      	cmp	r3, #0
+ 8002114:	d005      	beq.n	8002122 <mainProcces+0x3a>
+	                Licht_Sperr_Timer--;                                            // jetzt darf Licht geschaltet werden
+ 8002116:	4b8a      	ldr	r3, [pc, #552]	; (8002340 <mainProcces+0x258>)
+ 8002118:	781b      	ldrb	r3, [r3, #0]
+ 800211a:	3b01      	subs	r3, #1
+ 800211c:	b2da      	uxtb	r2, r3
+ 800211e:	4b88      	ldr	r3, [pc, #544]	; (8002340 <mainProcces+0x258>)
+ 8002120:	701a      	strb	r2, [r3, #0]
+
+	            eigene_Adresse = (U8)(EE_read(EE_ADR_AUTO_ADRESSE) & 0x07);         // wird in dieser Routine mehrfach ben�tigt
+ 8002122:	2001      	movs	r0, #1
+ 8002124:	f7ff ff79 	bl	800201a <EE_read>
+ 8002128:	4603      	mov	r3, r0
+ 800212a:	f003 0307 	and.w	r3, r3, #7
+ 800212e:	b2da      	uxtb	r2, r3
+ 8002130:	4b84      	ldr	r3, [pc, #528]	; (8002344 <mainProcces+0x25c>)
+ 8002132:	701a      	strb	r2, [r3, #0]
+
+	            switch (Telegrammtyp)
+ 8002134:	4b84      	ldr	r3, [pc, #528]	; (8002348 <mainProcces+0x260>)
+ 8002136:	781b      	ldrb	r3, [r3, #0]
+ 8002138:	2b0d      	cmp	r3, #13
+ 800213a:	d06b      	beq.n	8002214 <mainProcces+0x12c>
+ 800213c:	2b0d      	cmp	r3, #13
+ 800213e:	f300 80ad 	bgt.w	800229c <mainProcces+0x1b4>
+ 8002142:	2b08      	cmp	r3, #8
+ 8002144:	d002      	beq.n	800214c <mainProcces+0x64>
+ 8002146:	2b0a      	cmp	r3, #10
+ 8002148:	d004      	beq.n	8002154 <mainProcces+0x6c>
+ 800214a:	e0a7      	b.n	800229c <mainProcces+0x1b4>
+	            {
+	                case AKTIVDATENWORT:     //.....................................   Aktivdatenwort
+
+	                    if (CU_Daten.Adresse < 6)                                   // nur normale Autos, kein Ghostcar
+ 800214c:	4b7f      	ldr	r3, [pc, #508]	; (800234c <mainProcces+0x264>)
+ 800214e:	781b      	ldrb	r3, [r3, #0]
+ 8002150:	2b05      	cmp	r3, #5
+	                    {
+	                        if (DataBit[eigene_Adresse + 1] == 0)                   // wenn der eigene Regler nicht gedr�ckt
+//	                            CCPR1L = 0;      todo gpio
+	                        	;// Motor ausschalten
+	                    }
+	                    break;
+ 8002152:	e0a3      	b.n	800229c <mainProcces+0x1b4>
+
+	                case REGLERDATENWORT: //........................................  Regler oder Ghostcar Datenwort
+
+	                    Reglerdatenwort_decodieren();
+ 8002154:	f7ff fc6a 	bl	8001a2c <Reglerdatenwort_decodieren>
+
+	                    if (
+	                            (Ghostcar_Doppelklick_timeout == 0) &&              // nur wenn nicht auf Doppelklick f�r Ghostcar gewartet wird
+ 8002158:	4b7d      	ldr	r3, [pc, #500]	; (8002350 <mainProcces+0x268>)
+ 800215a:	781b      	ldrb	r3, [r3, #0]
+	                    if (
+ 800215c:	2b00      	cmp	r3, #0
+ 800215e:	d108      	bne.n	8002172 <mainProcces+0x8a>
+	                            (CU_Daten.Adresse < 6)
+ 8002160:	4b7a      	ldr	r3, [pc, #488]	; (800234c <mainProcces+0x264>)
+ 8002162:	781b      	ldrb	r3, [r3, #0]
+	                            (Ghostcar_Doppelklick_timeout == 0) &&              // nur wenn nicht auf Doppelklick f�r Ghostcar gewartet wird
+ 8002164:	2b05      	cmp	r3, #5
+ 8002166:	d804      	bhi.n	8002172 <mainProcces+0x8a>
+	                        )
+	                        Count_Spurwechseltaste(CU_Daten.Adresse);
+ 8002168:	4b78      	ldr	r3, [pc, #480]	; (800234c <mainProcces+0x264>)
+ 800216a:	781b      	ldrb	r3, [r3, #0]
+ 800216c:	4618      	mov	r0, r3
+ 800216e:	f7ff fd83 	bl	8001c78 <Count_Spurwechseltaste>
+
+	                    if (CU_Daten.Adresse == eigene_Adresse)
+ 8002172:	4b76      	ldr	r3, [pc, #472]	; (800234c <mainProcces+0x264>)
+ 8002174:	781a      	ldrb	r2, [r3, #0]
+ 8002176:	4b73      	ldr	r3, [pc, #460]	; (8002344 <mainProcces+0x25c>)
+ 8002178:	781b      	ldrb	r3, [r3, #0]
+ 800217a:	429a      	cmp	r2, r3
+ 800217c:	d118      	bne.n	80021b0 <mainProcces+0xc8>
+	                    {
+	                        Motor_und_Bremse_ansteuern(CU_Daten.Reglerwert);        // Motor in Abh�ngigkeit der Reglerstellung
+ 800217e:	4b73      	ldr	r3, [pc, #460]	; (800234c <mainProcces+0x264>)
+ 8002180:	789b      	ldrb	r3, [r3, #2]
+ 8002182:	4618      	mov	r0, r3
+ 8002184:	f7ff fd26 	bl	8001bd4 <Motor_und_Bremse_ansteuern>
+	                        if (Tank_leer == JA)                                    // wenn Tank leer dann blinken ==> kommt aus einem Programmierdatenwort
+ 8002188:	4b72      	ldr	r3, [pc, #456]	; (8002354 <mainProcces+0x26c>)
+ 800218a:	781b      	ldrb	r3, [r3, #0]
+ 800218c:	2b01      	cmp	r3, #1
+ 800218e:	d102      	bne.n	8002196 <mainProcces+0xae>
+	                            Tank_leer_Blinken = JA;
+ 8002190:	4b71      	ldr	r3, [pc, #452]	; (8002358 <mainProcces+0x270>)
+ 8002192:	2201      	movs	r2, #1
+ 8002194:	701a      	strb	r2, [r3, #0]
+
+	                        Eigene_Spurwechseltaste_auswerten();                    // Schalten von Licht bzw. Wechsel in Ghostcarprogrammierung
+ 8002196:	f7ff fe0f 	bl	8001db8 <Eigene_Spurwechseltaste_auswerten>
+
+	                        if (Adr_warte_auf_Reset_timeout > 0)                    // wenn 2x Spurwechseltaste gedr�ckt gedr�ckt aber noch nicht angehoben
+ 800219a:	4b70      	ldr	r3, [pc, #448]	; (800235c <mainProcces+0x274>)
+ 800219c:	781b      	ldrb	r3, [r3, #0]
+ 800219e:	2b00      	cmp	r3, #0
+ 80021a0:	d006      	beq.n	80021b0 <mainProcces+0xc8>
+	                        {
+	                            if (CU_Daten.Reglerwert > 0)                        // und wenn das Auto f�hrt
+ 80021a2:	4b6a      	ldr	r3, [pc, #424]	; (800234c <mainProcces+0x264>)
+ 80021a4:	789b      	ldrb	r3, [r3, #2]
+ 80021a6:	2b00      	cmp	r3, #0
+ 80021a8:	d002      	beq.n	80021b0 <mainProcces+0xc8>
+	                                Adr_warte_auf_Reset_timeout = 1;                // dann beim n�chstenTimerclick den Programmiermodus sofort verlassen
+ 80021aa:	4b6c      	ldr	r3, [pc, #432]	; (800235c <mainProcces+0x274>)
+ 80021ac:	2201      	movs	r2, #1
+ 80021ae:	701a      	strb	r2, [r3, #0]
+	                        }
+	                    }
+
+	                    if (eigene_Adresse == GHOSTCAR_ADRESSE)                     // Ghostcarbetrieb
+ 80021b0:	4b64      	ldr	r3, [pc, #400]	; (8002344 <mainProcces+0x25c>)
+ 80021b2:	781b      	ldrb	r3, [r3, #0]
+ 80021b4:	2b06      	cmp	r3, #6
+ 80021b6:	d16e      	bne.n	8002296 <mainProcces+0x1ae>
+	                    {
+	                        v_Ghostcar = (U8)(EE_read(EE_ADR_GHOST_GESCHWINDIGKEIT) & 0x0F);
+ 80021b8:	2007      	movs	r0, #7
+ 80021ba:	f7ff ff2e 	bl	800201a <EE_read>
+ 80021be:	4603      	mov	r3, r0
+ 80021c0:	f003 030f 	and.w	r3, r3, #15
+ 80021c4:	b2da      	uxtb	r2, r3
+ 80021c6:	4b66      	ldr	r3, [pc, #408]	; (8002360 <mainProcces+0x278>)
+ 80021c8:	701a      	strb	r2, [r3, #0]
+
+	                        if (CU_Daten.Adresse == PACE_UND_GHOSTCAR_DW_ADRESSE)
+ 80021ca:	4b60      	ldr	r3, [pc, #384]	; (800234c <mainProcces+0x264>)
+ 80021cc:	781b      	ldrb	r3, [r3, #0]
+ 80021ce:	2b07      	cmp	r3, #7
+ 80021d0:	d161      	bne.n	8002296 <mainProcces+0x1ae>
+	                        {
+	                            CU_Daten.KFR = DataBit[4];                          // Keine Freigabe Bit
+ 80021d2:	4b59      	ldr	r3, [pc, #356]	; (8002338 <mainProcces+0x250>)
+ 80021d4:	791a      	ldrb	r2, [r3, #4]
+ 80021d6:	4b5d      	ldr	r3, [pc, #372]	; (800234c <mainProcces+0x264>)
+ 80021d8:	711a      	strb	r2, [r3, #4]
+	                            CU_Daten.FR = DataBit[6];                           // Freigabe Bit
+ 80021da:	4b57      	ldr	r3, [pc, #348]	; (8002338 <mainProcces+0x250>)
+ 80021dc:	799a      	ldrb	r2, [r3, #6]
+ 80021de:	4b5b      	ldr	r3, [pc, #364]	; (800234c <mainProcces+0x264>)
+ 80021e0:	715a      	strb	r2, [r3, #5]
+	                            if ((CU_Daten.KFR == 0) && (CU_Daten.FR == 1))
+ 80021e2:	4b5a      	ldr	r3, [pc, #360]	; (800234c <mainProcces+0x264>)
+ 80021e4:	791b      	ldrb	r3, [r3, #4]
+ 80021e6:	2b00      	cmp	r3, #0
+ 80021e8:	d108      	bne.n	80021fc <mainProcces+0x114>
+ 80021ea:	4b58      	ldr	r3, [pc, #352]	; (800234c <mainProcces+0x264>)
+ 80021ec:	795b      	ldrb	r3, [r3, #5]
+ 80021ee:	2b01      	cmp	r3, #1
+ 80021f0:	d104      	bne.n	80021fc <mainProcces+0x114>
+	                                Motor_und_Bremse_ansteuern(v_Ghostcar);         // programmierte Geschwindigkeit
+ 80021f2:	4b5b      	ldr	r3, [pc, #364]	; (8002360 <mainProcces+0x278>)
+ 80021f4:	781b      	ldrb	r3, [r3, #0]
+ 80021f6:	4618      	mov	r0, r3
+ 80021f8:	f7ff fcec 	bl	8001bd4 <Motor_und_Bremse_ansteuern>
+	                            if ((CU_Daten.KFR == 1) && (CU_Daten.FR == 0))
+ 80021fc:	4b53      	ldr	r3, [pc, #332]	; (800234c <mainProcces+0x264>)
+ 80021fe:	791b      	ldrb	r3, [r3, #4]
+ 8002200:	2b01      	cmp	r3, #1
+ 8002202:	d148      	bne.n	8002296 <mainProcces+0x1ae>
+ 8002204:	4b51      	ldr	r3, [pc, #324]	; (800234c <mainProcces+0x264>)
+ 8002206:	795b      	ldrb	r3, [r3, #5]
+ 8002208:	2b00      	cmp	r3, #0
+ 800220a:	d144      	bne.n	8002296 <mainProcces+0x1ae>
+	                                Motor_und_Bremse_ansteuern(0);                  // Motor aus, z.B. in Startphase
+ 800220c:	2000      	movs	r0, #0
+ 800220e:	f7ff fce1 	bl	8001bd4 <Motor_und_Bremse_ansteuern>
+	                        }
+	                    }
+
+	                    break;
+ 8002212:	e040      	b.n	8002296 <mainProcces+0x1ae>
+
+	                case PROGRAMMIERDATENWORT: //.................................  Programmierdatenwort
+	                    Programmierdatenwort_decodieren();
+ 8002214:	f7ff fc62 	bl	8001adc <Programmierdatenwort_decodieren>
+	                    if (CU_Prg_Daten.Adresse == eigene_Adresse)
+ 8002218:	4b52      	ldr	r3, [pc, #328]	; (8002364 <mainProcces+0x27c>)
+ 800221a:	781a      	ldrb	r2, [r3, #0]
+ 800221c:	4b49      	ldr	r3, [pc, #292]	; (8002344 <mainProcces+0x25c>)
+ 800221e:	781b      	ldrb	r3, [r3, #0]
+ 8002220:	429a      	cmp	r2, r3
+ 8002222:	d13a      	bne.n	800229a <mainProcces+0x1b2>
+	                    {
+	                        if (                                                    // das wid immer 2 x �bertragen
+	                                (CU_Prg_Daten.Parameter == PRG_MAX_GESCHWINDIGKEIT) ||
+ 8002224:	4b4f      	ldr	r3, [pc, #316]	; (8002364 <mainProcces+0x27c>)
+ 8002226:	789b      	ldrb	r3, [r3, #2]
+	                        if (                                                    // das wid immer 2 x �bertragen
+ 8002228:	2b00      	cmp	r3, #0
+ 800222a:	d003      	beq.n	8002234 <mainProcces+0x14c>
+	                                (CU_Prg_Daten.Parameter == PRG_BREMSWIRKUNG) //||
+ 800222c:	4b4d      	ldr	r3, [pc, #308]	; (8002364 <mainProcces+0x27c>)
+ 800222e:	789b      	ldrb	r3, [r3, #2]
+	                                (CU_Prg_Daten.Parameter == PRG_MAX_GESCHWINDIGKEIT) ||
+ 8002230:	2b01      	cmp	r3, #1
+ 8002232:	d11d      	bne.n	8002270 <mainProcces+0x188>
+	                                //(CU_Prg_Daten.Parameter == TANK_INHALT)
+	                            )
+	                        {
+	                            //. . . . . . . . . . . . . . . . . . . . . . . . .    max. Geschwindigkeit oder Bremswirkung
+	                            if (                                                // Wenn das Parametrierwort schon mal gesendet wurde
+	                                    (CU_Prg_Daten.Parameter == CU_Prg_Daten.Parameter_alt) &&
+ 8002234:	4b4b      	ldr	r3, [pc, #300]	; (8002364 <mainProcces+0x27c>)
+ 8002236:	789a      	ldrb	r2, [r3, #2]
+ 8002238:	4b4a      	ldr	r3, [pc, #296]	; (8002364 <mainProcces+0x27c>)
+ 800223a:	791b      	ldrb	r3, [r3, #4]
+	                            if (                                                // Wenn das Parametrierwort schon mal gesendet wurde
+ 800223c:	429a      	cmp	r2, r3
+ 800223e:	d10e      	bne.n	800225e <mainProcces+0x176>
+	                                    (CU_Prg_Daten.Wert == CU_Prg_Daten.Wert_alt)
+ 8002240:	4b48      	ldr	r3, [pc, #288]	; (8002364 <mainProcces+0x27c>)
+ 8002242:	785a      	ldrb	r2, [r3, #1]
+ 8002244:	4b47      	ldr	r3, [pc, #284]	; (8002364 <mainProcces+0x27c>)
+ 8002246:	78db      	ldrb	r3, [r3, #3]
+	                                    (CU_Prg_Daten.Parameter == CU_Prg_Daten.Parameter_alt) &&
+ 8002248:	429a      	cmp	r2, r3
+ 800224a:	d108      	bne.n	800225e <mainProcces+0x176>
+	                               )
+
+	                            {
+	                                Parameter_verarbeiten();                        // max. Gewschindigkeit und Bremswirkung speichern
+ 800224c:	f7ff fe5a 	bl	8001f04 <Parameter_verarbeiten>
+	                                CU_Prg_Daten.Parameter_alt = PRG_NORMALBETRIEB;
+ 8002250:	4b44      	ldr	r3, [pc, #272]	; (8002364 <mainProcces+0x27c>)
+ 8002252:	2204      	movs	r2, #4
+ 8002254:	711a      	strb	r2, [r3, #4]
+	                                CU_Prg_Daten.Wert_alt = 0;
+ 8002256:	4b43      	ldr	r3, [pc, #268]	; (8002364 <mainProcces+0x27c>)
+ 8002258:	2200      	movs	r2, #0
+ 800225a:	70da      	strb	r2, [r3, #3]
+	                            if (                                                // Wenn das Parametrierwort schon mal gesendet wurde
+ 800225c:	e01a      	b.n	8002294 <mainProcces+0x1ac>
+	                            }
+	                            else
+	                            {
+	                                CU_Prg_Daten.Parameter_alt = CU_Prg_Daten.Parameter;// merken was gerade gesendet wurde
+ 800225e:	4b41      	ldr	r3, [pc, #260]	; (8002364 <mainProcces+0x27c>)
+ 8002260:	789a      	ldrb	r2, [r3, #2]
+ 8002262:	4b40      	ldr	r3, [pc, #256]	; (8002364 <mainProcces+0x27c>)
+ 8002264:	711a      	strb	r2, [r3, #4]
+	                                CU_Prg_Daten.Wert_alt = CU_Prg_Daten.Wert;
+ 8002266:	4b3f      	ldr	r3, [pc, #252]	; (8002364 <mainProcces+0x27c>)
+ 8002268:	785a      	ldrb	r2, [r3, #1]
+ 800226a:	4b3e      	ldr	r3, [pc, #248]	; (8002364 <mainProcces+0x27c>)
+ 800226c:	70da      	strb	r2, [r3, #3]
+	                            if (                                                // Wenn das Parametrierwort schon mal gesendet wurde
+ 800226e:	e011      	b.n	8002294 <mainProcces+0x1ac>
+	                            }
+	                        }
+	                        else
+	                        {
+	                            if (CU_Prg_Daten.Parameter == PRG_NORMALBETRIEB)
+ 8002270:	4b3c      	ldr	r3, [pc, #240]	; (8002364 <mainProcces+0x27c>)
+ 8002272:	789b      	ldrb	r3, [r3, #2]
+ 8002274:	2b04      	cmp	r3, #4
+ 8002276:	d110      	bne.n	800229a <mainProcces+0x1b2>
+	                            {
+	                                if ((CU_Prg_Daten.Wert & 0x08) != 0)
+ 8002278:	4b3a      	ldr	r3, [pc, #232]	; (8002364 <mainProcces+0x27c>)
+ 800227a:	785b      	ldrb	r3, [r3, #1]
+ 800227c:	f003 0308 	and.w	r3, r3, #8
+ 8002280:	2b00      	cmp	r3, #0
+ 8002282:	d003      	beq.n	800228c <mainProcces+0x1a4>
+	                                    Tank_leer = JA;
+ 8002284:	4b33      	ldr	r3, [pc, #204]	; (8002354 <mainProcces+0x26c>)
+ 8002286:	2201      	movs	r2, #1
+ 8002288:	701a      	strb	r2, [r3, #0]
+	                                    Tank_leer = NEIN;
+	                            }
+	                        }
+
+	                    }
+	                    break;
+ 800228a:	e006      	b.n	800229a <mainProcces+0x1b2>
+	                                    Tank_leer = NEIN;
+ 800228c:	4b31      	ldr	r3, [pc, #196]	; (8002354 <mainProcces+0x26c>)
+ 800228e:	2200      	movs	r2, #0
+ 8002290:	701a      	strb	r2, [r3, #0]
+	                    break;
+ 8002292:	e002      	b.n	800229a <mainProcces+0x1b2>
+ 8002294:	e001      	b.n	800229a <mainProcces+0x1b2>
+	                    break;
+ 8002296:	bf00      	nop
+ 8002298:	e000      	b.n	800229c <mainProcces+0x1b4>
+	                    break;
+ 800229a:	bf00      	nop
+
+	            }
+
+	            //----------------------------------------------------------------  ab hier alle ca. 100msec
+	            //if (Timer_Counter > 13)                                           // wenn alle Telegramme detektiert werden
+	            if (Timer_Counter > 10)                                             // wenn die Aktivdatenw�rter nicht detektiert werden
+ 800229c:	4b27      	ldr	r3, [pc, #156]	; (800233c <mainProcces+0x254>)
+ 800229e:	781b      	ldrb	r3, [r3, #0]
+ 80022a0:	2b0a      	cmp	r3, #10
+ 80022a2:	f240 80b0 	bls.w	8002406 <mainProcces+0x31e>
+	            {
+	                Timer_Counter = 0;
+ 80022a6:	4b25      	ldr	r3, [pc, #148]	; (800233c <mainProcces+0x254>)
+ 80022a8:	2200      	movs	r2, #0
+ 80022aa:	701a      	strb	r2, [r3, #0]
+
+
+
+	                //..............................................................
+	                if (Adr_warte_auf_Reset_timeout > 0)                            // Programmiersequenz ist gestartet aber es ist noch kein Neustart gewesen
+ 80022ac:	4b2b      	ldr	r3, [pc, #172]	; (800235c <mainProcces+0x274>)
+ 80022ae:	781b      	ldrb	r3, [r3, #0]
+ 80022b0:	2b00      	cmp	r3, #0
+ 80022b2:	d010      	beq.n	80022d6 <mainProcces+0x1ee>
+	                {
+	                    Adr_warte_auf_Reset_timeout--;
+ 80022b4:	4b29      	ldr	r3, [pc, #164]	; (800235c <mainProcces+0x274>)
+ 80022b6:	781b      	ldrb	r3, [r3, #0]
+ 80022b8:	3b01      	subs	r3, #1
+ 80022ba:	b2da      	uxtb	r2, r3
+ 80022bc:	4b27      	ldr	r3, [pc, #156]	; (800235c <mainProcces+0x274>)
+ 80022be:	701a      	strb	r2, [r3, #0]
+	                    if (Adr_warte_auf_Reset_timeout == 0)                       // wenn 2 Sekunden kein Neuart
+ 80022c0:	4b26      	ldr	r3, [pc, #152]	; (800235c <mainProcces+0x274>)
+ 80022c2:	781b      	ldrb	r3, [r3, #0]
+ 80022c4:	2b00      	cmp	r3, #0
+ 80022c6:	d106      	bne.n	80022d6 <mainProcces+0x1ee>
+	                    {
+	                        Programmiermodus = NEIN;                                // dann Programmiermodus verlassen
+ 80022c8:	4b27      	ldr	r3, [pc, #156]	; (8002368 <mainProcces+0x280>)
+ 80022ca:	2200      	movs	r2, #0
+ 80022cc:	701a      	strb	r2, [r3, #0]
+	                        EE_write_verified (NEIN, EE_ADR_PROGRAMMIERMODUS);
+ 80022ce:	2103      	movs	r1, #3
+ 80022d0:	2000      	movs	r0, #0
+ 80022d2:	f7ff feae 	bl	8002032 <EE_write_verified>
+	                    }
+	                }
+
+	                //..............................................................
+	                if (Adr_Programmier_timeout > 0)                                // Programmiermodus nach Neustart nach 2 Sekunden abbrechen
+ 80022d6:	4b25      	ldr	r3, [pc, #148]	; (800236c <mainProcces+0x284>)
+ 80022d8:	781b      	ldrb	r3, [r3, #0]
+ 80022da:	2b00      	cmp	r3, #0
+ 80022dc:	d012      	beq.n	8002304 <mainProcces+0x21c>
+	                {
+	                    //Pin_o_LICHT ^= 1; gpio makro
+	                    Adr_Programmier_timeout--;                                  // Timeout f�r Adresssierung Auto Adresse
+ 80022de:	4b23      	ldr	r3, [pc, #140]	; (800236c <mainProcces+0x284>)
+ 80022e0:	781b      	ldrb	r3, [r3, #0]
+ 80022e2:	3b01      	subs	r3, #1
+ 80022e4:	b2da      	uxtb	r2, r3
+ 80022e6:	4b21      	ldr	r3, [pc, #132]	; (800236c <mainProcces+0x284>)
+ 80022e8:	701a      	strb	r2, [r3, #0]
+	                    if (Adr_Programmier_timeout == 0)
+ 80022ea:	4b20      	ldr	r3, [pc, #128]	; (800236c <mainProcces+0x284>)
+ 80022ec:	781b      	ldrb	r3, [r3, #0]
+ 80022ee:	2b00      	cmp	r3, #0
+ 80022f0:	d108      	bne.n	8002304 <mainProcces+0x21c>
+	                    {
+	                        Programmiermodus = NEIN;                                // dann Programmiermodus verlassen
+ 80022f2:	4b1d      	ldr	r3, [pc, #116]	; (8002368 <mainProcces+0x280>)
+ 80022f4:	2200      	movs	r2, #0
+ 80022f6:	701a      	strb	r2, [r3, #0]
+	                        EE_write_verified (NEIN, EE_ADR_PROGRAMMIERMODUS);
+ 80022f8:	2103      	movs	r1, #3
+ 80022fa:	2000      	movs	r0, #0
+ 80022fc:	f7ff fe99 	bl	8002032 <EE_write_verified>
+	                        Licht_schalten();                                       // je nach Wert im EEPROM Licht ein oder aus
+ 8002300:	f7ff fde2 	bl	8001ec8 <Licht_schalten>
+	                    }
+	                }
+
+	                //..............................................................
+	                if (Ghostcar_Doppelklick_timeout > 0)                           // Zeitfenster f�r Doppelklick nach Adr.-Programmierung
+ 8002304:	4b12      	ldr	r3, [pc, #72]	; (8002350 <mainProcces+0x268>)
+ 8002306:	781b      	ldrb	r3, [r3, #0]
+ 8002308:	2b00      	cmp	r3, #0
+ 800230a:	d005      	beq.n	8002318 <mainProcces+0x230>
+	                    Ghostcar_Doppelklick_timeout--;                             // beenden
+ 800230c:	4b10      	ldr	r3, [pc, #64]	; (8002350 <mainProcces+0x268>)
+ 800230e:	781b      	ldrb	r3, [r3, #0]
+ 8002310:	3b01      	subs	r3, #1
+ 8002312:	b2da      	uxtb	r2, r3
+ 8002314:	4b0e      	ldr	r3, [pc, #56]	; (8002350 <mainProcces+0x268>)
+ 8002316:	701a      	strb	r2, [r3, #0]
+
+
+	                //..............................................................
+	                if (Bremslicht_timer > 0)
+ 8002318:	4b15      	ldr	r3, [pc, #84]	; (8002370 <mainProcces+0x288>)
+ 800231a:	781b      	ldrb	r3, [r3, #0]
+ 800231c:	2b00      	cmp	r3, #0
+ 800231e:	d005      	beq.n	800232c <mainProcces+0x244>
+	                {
+	                    Bremslicht_timer--;
+ 8002320:	4b13      	ldr	r3, [pc, #76]	; (8002370 <mainProcces+0x288>)
+ 8002322:	781b      	ldrb	r3, [r3, #0]
+ 8002324:	3b01      	subs	r3, #1
+ 8002326:	b2da      	uxtb	r2, r3
+ 8002328:	4b11      	ldr	r3, [pc, #68]	; (8002370 <mainProcces+0x288>)
+ 800232a:	701a      	strb	r2, [r3, #0]
+	                    	;
+	                        //CCPR4L = 0x00; todo gpio                                          // sonst R�cklicht ganz aus
+	                }
+
+	                //..............................................................
+	                for (Adresse = 0; Adresse < MAX_REGLER; Adresse++)              // f�r alle Regler
+ 800232c:	4b11      	ldr	r3, [pc, #68]	; (8002374 <mainProcces+0x28c>)
+ 800232e:	2200      	movs	r2, #0
+ 8002330:	701a      	strb	r2, [r3, #0]
+ 8002332:	e048      	b.n	80023c6 <mainProcces+0x2de>
+ 8002334:	2400005c 	.word	0x2400005c
+ 8002338:	24000068 	.word	0x24000068
+ 800233c:	2400005b 	.word	0x2400005b
+ 8002340:	2400005f 	.word	0x2400005f
+ 8002344:	24000056 	.word	0x24000056
+ 8002348:	2400005d 	.word	0x2400005d
+ 800234c:	24000034 	.word	0x24000034
+ 8002350:	24000062 	.word	0x24000062
+ 8002354:	24000064 	.word	0x24000064
+ 8002358:	2400007c 	.word	0x2400007c
+ 800235c:	24000061 	.word	0x24000061
+ 8002360:	24000057 	.word	0x24000057
+ 8002364:	2400003c 	.word	0x2400003c
+ 8002368:	24000058 	.word	0x24000058
+ 800236c:	24000060 	.word	0x24000060
+ 8002370:	24000065 	.word	0x24000065
+ 8002374:	24000030 	.word	0x24000030
+	                {
+	                    if (Spurwechseltaste.Reset_Timer[Adresse] > 0)              // wenn 2 Sekunden keine Taste gedr�ckt, dann
+ 8002378:	4b24      	ldr	r3, [pc, #144]	; (800240c <mainProcces+0x324>)
+ 800237a:	781b      	ldrb	r3, [r3, #0]
+ 800237c:	461a      	mov	r2, r3
+ 800237e:	4b24      	ldr	r3, [pc, #144]	; (8002410 <mainProcces+0x328>)
+ 8002380:	4413      	add	r3, r2
+ 8002382:	7b1b      	ldrb	r3, [r3, #12]
+ 8002384:	2b00      	cmp	r3, #0
+ 8002386:	d018      	beq.n	80023ba <mainProcces+0x2d2>
+	                    {                                                           // den Counter l�schen
+	                        Spurwechseltaste.Reset_Timer[Adresse]--;                // d.h. zum Programmieren muss die Taste 2 x innerhalb
+ 8002388:	4b20      	ldr	r3, [pc, #128]	; (800240c <mainProcces+0x324>)
+ 800238a:	781b      	ldrb	r3, [r3, #0]
+ 800238c:	4a20      	ldr	r2, [pc, #128]	; (8002410 <mainProcces+0x328>)
+ 800238e:	441a      	add	r2, r3
+ 8002390:	7b12      	ldrb	r2, [r2, #12]
+ 8002392:	3a01      	subs	r2, #1
+ 8002394:	b2d1      	uxtb	r1, r2
+ 8002396:	4a1e      	ldr	r2, [pc, #120]	; (8002410 <mainProcces+0x328>)
+ 8002398:	4413      	add	r3, r2
+ 800239a:	460a      	mov	r2, r1
+ 800239c:	731a      	strb	r2, [r3, #12]
+	                        if (Spurwechseltaste.Reset_Timer[Adresse] == 0)         // von 2 Sekunden gedr�ckt werden
+ 800239e:	4b1b      	ldr	r3, [pc, #108]	; (800240c <mainProcces+0x324>)
+ 80023a0:	781b      	ldrb	r3, [r3, #0]
+ 80023a2:	461a      	mov	r2, r3
+ 80023a4:	4b1a      	ldr	r3, [pc, #104]	; (8002410 <mainProcces+0x328>)
+ 80023a6:	4413      	add	r3, r2
+ 80023a8:	7b1b      	ldrb	r3, [r3, #12]
+ 80023aa:	2b00      	cmp	r3, #0
+ 80023ac:	d105      	bne.n	80023ba <mainProcces+0x2d2>
+	                        {
+	                            Spurwechseltaste.Counter[Adresse] = 0;
+ 80023ae:	4b17      	ldr	r3, [pc, #92]	; (800240c <mainProcces+0x324>)
+ 80023b0:	781b      	ldrb	r3, [r3, #0]
+ 80023b2:	461a      	mov	r2, r3
+ 80023b4:	4b16      	ldr	r3, [pc, #88]	; (8002410 <mainProcces+0x328>)
+ 80023b6:	2100      	movs	r1, #0
+ 80023b8:	5499      	strb	r1, [r3, r2]
+	                for (Adresse = 0; Adresse < MAX_REGLER; Adresse++)              // f�r alle Regler
+ 80023ba:	4b14      	ldr	r3, [pc, #80]	; (800240c <mainProcces+0x324>)
+ 80023bc:	781b      	ldrb	r3, [r3, #0]
+ 80023be:	3301      	adds	r3, #1
+ 80023c0:	b2da      	uxtb	r2, r3
+ 80023c2:	4b12      	ldr	r3, [pc, #72]	; (800240c <mainProcces+0x324>)
+ 80023c4:	701a      	strb	r2, [r3, #0]
+ 80023c6:	4b11      	ldr	r3, [pc, #68]	; (800240c <mainProcces+0x324>)
+ 80023c8:	781b      	ldrb	r3, [r3, #0]
+ 80023ca:	2b05      	cmp	r3, #5
+ 80023cc:	d9d4      	bls.n	8002378 <mainProcces+0x290>
+	                }
+
+
+	                //..............................................................
+
+	                Ghostcar_Programmiermodus = EE_read(EE_ADR_GHOST_PROGRAMMIERMODUS);
+ 80023ce:	2008      	movs	r0, #8
+ 80023d0:	f7ff fe23 	bl	800201a <EE_read>
+ 80023d4:	4603      	mov	r3, r0
+ 80023d6:	461a      	mov	r2, r3
+ 80023d8:	4b0e      	ldr	r3, [pc, #56]	; (8002414 <mainProcces+0x32c>)
+ 80023da:	701a      	strb	r2, [r3, #0]
+	                if (
+	                        (Ghostcar_Programmiermodus == JA) ||
+ 80023dc:	4b0d      	ldr	r3, [pc, #52]	; (8002414 <mainProcces+0x32c>)
+ 80023de:	781b      	ldrb	r3, [r3, #0]
+	                if (
+ 80023e0:	2b01      	cmp	r3, #1
+ 80023e2:	d003      	beq.n	80023ec <mainProcces+0x304>
+	                        (Tank_leer_Blinken == JA)
+ 80023e4:	4b0c      	ldr	r3, [pc, #48]	; (8002418 <mainProcces+0x330>)
+ 80023e6:	781b      	ldrb	r3, [r3, #0]
+	                        (Ghostcar_Programmiermodus == JA) ||
+ 80023e8:	2b01      	cmp	r3, #1
+ 80023ea:	d10c      	bne.n	8002406 <mainProcces+0x31e>
+	                                                                                // Im Ghostcar Programmiermodus (Geschwindigkeit einstellen)
+	                                                                                // und wenn der Tank leer ist, dann
+	                {                                                               // langsam blinken
+	                   // Pin_o_LICHT ^= 1; todo makro gpio
+
+	                    if ((Tank_leer_Blinken == JA) && (Tank_leer == NEIN))       // wenn Tank wieder voll, dann Licht schalten wie es war
+ 80023ec:	4b0a      	ldr	r3, [pc, #40]	; (8002418 <mainProcces+0x330>)
+ 80023ee:	781b      	ldrb	r3, [r3, #0]
+ 80023f0:	2b01      	cmp	r3, #1
+ 80023f2:	d108      	bne.n	8002406 <mainProcces+0x31e>
+ 80023f4:	4b09      	ldr	r3, [pc, #36]	; (800241c <mainProcces+0x334>)
+ 80023f6:	781b      	ldrb	r3, [r3, #0]
+ 80023f8:	2b00      	cmp	r3, #0
+ 80023fa:	d104      	bne.n	8002406 <mainProcces+0x31e>
+	                    {
+	                        Tank_leer_Blinken = NEIN;                               // aufh�ren mit Blinken
+ 80023fc:	4b06      	ldr	r3, [pc, #24]	; (8002418 <mainProcces+0x330>)
+ 80023fe:	2200      	movs	r2, #0
+ 8002400:	701a      	strb	r2, [r3, #0]
+	                        Licht_schalten();
+ 8002402:	f7ff fd61 	bl	8001ec8 <Licht_schalten>
+	                    }
+	                }
+	            } // Ende von 131 ms vorbei
+	        } // Ende von es wurde ein Telegramm empfangen
 }
- 8001906:	bf00      	nop
- 8001908:	46bd      	mov	sp, r7
- 800190a:	f85d 7b04 	ldr.w	r7, [sp], #4
- 800190e:	4770      	bx	lr
+ 8002406:	bf00      	nop
+ 8002408:	bd80      	pop	{r7, pc}
+ 800240a:	bf00      	nop
+ 800240c:	24000030 	.word	0x24000030
+ 8002410:	24000044 	.word	0x24000044
+ 8002414:	24000059 	.word	0x24000059
+ 8002418:	2400007c 	.word	0x2400007c
+ 800241c:	24000064 	.word	0x24000064
 
-08001910 <memset>:
- 8001910:	4402      	add	r2, r0
- 8001912:	4603      	mov	r3, r0
- 8001914:	4293      	cmp	r3, r2
- 8001916:	d100      	bne.n	800191a <memset+0xa>
- 8001918:	4770      	bx	lr
- 800191a:	f803 1b01 	strb.w	r1, [r3], #1
- 800191e:	e7f9      	b.n	8001914 <memset+0x4>
+08002420 <memset>:
+ 8002420:	4402      	add	r2, r0
+ 8002422:	4603      	mov	r3, r0
+ 8002424:	4293      	cmp	r3, r2
+ 8002426:	d100      	bne.n	800242a <memset+0xa>
+ 8002428:	4770      	bx	lr
+ 800242a:	f803 1b01 	strb.w	r1, [r3], #1
+ 800242e:	e7f9      	b.n	8002424 <memset+0x4>
 
-08001920 <__libc_init_array>:
- 8001920:	b570      	push	{r4, r5, r6, lr}
- 8001922:	4d0d      	ldr	r5, [pc, #52]	; (8001958 <__libc_init_array+0x38>)
- 8001924:	4c0d      	ldr	r4, [pc, #52]	; (800195c <__libc_init_array+0x3c>)
- 8001926:	1b64      	subs	r4, r4, r5
- 8001928:	10a4      	asrs	r4, r4, #2
- 800192a:	2600      	movs	r6, #0
- 800192c:	42a6      	cmp	r6, r4
- 800192e:	d109      	bne.n	8001944 <__libc_init_array+0x24>
- 8001930:	4d0b      	ldr	r5, [pc, #44]	; (8001960 <__libc_init_array+0x40>)
- 8001932:	4c0c      	ldr	r4, [pc, #48]	; (8001964 <__libc_init_array+0x44>)
- 8001934:	f000 f818 	bl	8001968 <_init>
- 8001938:	1b64      	subs	r4, r4, r5
- 800193a:	10a4      	asrs	r4, r4, #2
- 800193c:	2600      	movs	r6, #0
- 800193e:	42a6      	cmp	r6, r4
- 8001940:	d105      	bne.n	800194e <__libc_init_array+0x2e>
- 8001942:	bd70      	pop	{r4, r5, r6, pc}
- 8001944:	f855 3b04 	ldr.w	r3, [r5], #4
- 8001948:	4798      	blx	r3
- 800194a:	3601      	adds	r6, #1
- 800194c:	e7ee      	b.n	800192c <__libc_init_array+0xc>
- 800194e:	f855 3b04 	ldr.w	r3, [r5], #4
- 8001952:	4798      	blx	r3
- 8001954:	3601      	adds	r6, #1
- 8001956:	e7f2      	b.n	800193e <__libc_init_array+0x1e>
- 8001958:	08001990 	.word	0x08001990
- 800195c:	08001990 	.word	0x08001990
- 8001960:	08001990 	.word	0x08001990
- 8001964:	08001994 	.word	0x08001994
+08002430 <__libc_init_array>:
+ 8002430:	b570      	push	{r4, r5, r6, lr}
+ 8002432:	4d0d      	ldr	r5, [pc, #52]	; (8002468 <__libc_init_array+0x38>)
+ 8002434:	4c0d      	ldr	r4, [pc, #52]	; (800246c <__libc_init_array+0x3c>)
+ 8002436:	1b64      	subs	r4, r4, r5
+ 8002438:	10a4      	asrs	r4, r4, #2
+ 800243a:	2600      	movs	r6, #0
+ 800243c:	42a6      	cmp	r6, r4
+ 800243e:	d109      	bne.n	8002454 <__libc_init_array+0x24>
+ 8002440:	4d0b      	ldr	r5, [pc, #44]	; (8002470 <__libc_init_array+0x40>)
+ 8002442:	4c0c      	ldr	r4, [pc, #48]	; (8002474 <__libc_init_array+0x44>)
+ 8002444:	f000 f818 	bl	8002478 <_init>
+ 8002448:	1b64      	subs	r4, r4, r5
+ 800244a:	10a4      	asrs	r4, r4, #2
+ 800244c:	2600      	movs	r6, #0
+ 800244e:	42a6      	cmp	r6, r4
+ 8002450:	d105      	bne.n	800245e <__libc_init_array+0x2e>
+ 8002452:	bd70      	pop	{r4, r5, r6, pc}
+ 8002454:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8002458:	4798      	blx	r3
+ 800245a:	3601      	adds	r6, #1
+ 800245c:	e7ee      	b.n	800243c <__libc_init_array+0xc>
+ 800245e:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8002462:	4798      	blx	r3
+ 8002464:	3601      	adds	r6, #1
+ 8002466:	e7f2      	b.n	800244e <__libc_init_array+0x1e>
+ 8002468:	080025a0 	.word	0x080025a0
+ 800246c:	080025a0 	.word	0x080025a0
+ 8002470:	080025a0 	.word	0x080025a0
+ 8002474:	080025a4 	.word	0x080025a4
 
-08001968 <_init>:
- 8001968:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 800196a:	bf00      	nop
- 800196c:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 800196e:	bc08      	pop	{r3}
- 8001970:	469e      	mov	lr, r3
- 8001972:	4770      	bx	lr
+08002478 <_init>:
+ 8002478:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800247a:	bf00      	nop
+ 800247c:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800247e:	bc08      	pop	{r3}
+ 8002480:	469e      	mov	lr, r3
+ 8002482:	4770      	bx	lr
 
-08001974 <_fini>:
- 8001974:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8001976:	bf00      	nop
- 8001978:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 800197a:	bc08      	pop	{r3}
- 800197c:	469e      	mov	lr, r3
- 800197e:	4770      	bx	lr
+08002484 <_fini>:
+ 8002484:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8002486:	bf00      	nop
+ 8002488:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800248a:	bc08      	pop	{r3}
+ 800248c:	469e      	mov	lr, r3
+ 800248e:	4770      	bx	lr
